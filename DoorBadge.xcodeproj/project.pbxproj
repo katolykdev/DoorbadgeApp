@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C5450E56CEB870421CA882A2 /* Pods_DoorBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675CF636B73F8CAC96337E34 /* Pods_DoorBadge.framework */; };
+		F3117ABA22F0F8AE00E933F1 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */; };
+		F3117ABC22F1146900E933F1 /* LatestVideoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3117ABB22F1146900E933F1 /* LatestVideoURL.swift */; };
+		F31F88742278F2F600D28F14 /* AddEventEventDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31F88722278F2F600D28F14 /* AddEventEventDetailsCell.swift */; };
+		F31F88752278F2F600D28F14 /* AddEventEventDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31F88732278F2F600D28F14 /* AddEventEventDetailsCell.xib */; };
+		F327FFA622EFFE7F0005233C /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327FFA522EFFE7F0005233C /* VideoRecorderViewController.swift */; };
+		F327FFA822F000A30005233C /* VideoPlayback.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327FFA722F000A30005233C /* VideoPlayback.swift */; };
+		F32FF9F722D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FF9F622D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift */; };
+		F32FF9FA22D4F7A400FBF1D4 /* memoryBookHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FF9F822D4F7A400FBF1D4 /* memoryBookHeaderCell.swift */; };
+		F32FF9FB22D4F7A400FBF1D4 /* memoryBookHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F32FF9F922D4F7A400FBF1D4 /* memoryBookHeaderCell.xib */; };
+		F32FF9FF22D5043D00FBF1D4 /* MemoryBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FF9FE22D5043D00FBF1D4 /* MemoryBookViewController.swift */; };
+		F32FFA0222D508DA00FBF1D4 /* memoryBookCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FFA0022D508DA00FBF1D4 /* memoryBookCommentCell.swift */; };
+		F32FFA0322D508DA00FBF1D4 /* memoryBookCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F32FFA0122D508DA00FBF1D4 /* memoryBookCommentCell.xib */; };
+		F33D243E228B135200BC973D /* FacilityEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D243D228B135200BC973D /* FacilityEvents.swift */; };
+		F33D2440228B298C00BC973D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33D243F228B298C00BC973D /* TabBarController.swift */; };
+		F35A11D322DC2C1B00D664C4 /* AddMemoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A11D222DC2C1B00D664C4 /* AddMemoryViewController.swift */; };
+		F368DCC622DFBFF800C08BF7 /* MemoryBookEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F368DCC522DFBFF800C08BF7 /* MemoryBookEvent.swift */; };
+		F368DCC822E02CE900C08BF7 /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F368DCC722E02CE900C08BF7 /* Memory.swift */; };
+		F3707B472270A6F1000A010B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3707B462270A6F1000A010B /* AppDelegate.swift */; };
+		F3707B4C2270A6F1000A010B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3707B4A2270A6F1000A010B /* Main.storyboard */; };
+		F3707B4E2270A6F4000A010B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3707B4D2270A6F4000A010B /* Assets.xcassets */; };
+		F3707B512270A6F4000A010B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3707B4F2270A6F4000A010B /* LaunchScreen.storyboard */; };
+		F3707B5B227155D2000A010B /* DoorBadgeLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3707B5A227155D2000A010B /* DoorBadgeLogInViewController.swift */; };
+		F3707B5D227159B1000A010B /* DoorBadgePreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3707B5C227159B1000A010B /* DoorBadgePreLoginViewController.swift */; };
+		F37504F722A2B467005B5193 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F37504F622A2B467005B5193 /* GoogleService-Info.plist */; };
+		F385F69C22E977A300FAA1B7 /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385F69B22E977A300FAA1B7 /* FullImageViewController.swift */; };
+		F398D6DA22A75DDD00E3E2C7 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F398D6D922A75DDD00E3E2C7 /* LoadingButton.swift */; };
+		F39FCC4B22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39FCC4A22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift */; };
+		F39FCC51227548C6007CD427 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39FCC50227548C6007CD427 /* Event.swift */; };
+		F39FCC5322754E7B007CD427 /* LocalCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39FCC5222754E7B007CD427 /* LocalCollection.swift */; };
+		F39FCC55227551AD007CD427 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39FCC54227551AD007CD427 /* User.swift */; };
+		F39FCC892275FE4E007CD427 /* EventCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39FCC872275FE4E007CD427 /* EventCellTableViewCell.swift */; };
+		F39FCC8A2275FE4E007CD427 /* EventCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F39FCC882275FE4E007CD427 /* EventCellTableViewCell.xib */; };
+		F3A6953622B1FBE900904812 /* FamilyEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6953522B1FBE900904812 /* FamilyEvents.swift */; };
+		F3A6953822B1FCF300904812 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A6953722B1FCF300904812 /* Family.swift */; };
+		F3AF308322CFC04F0044B9CB /* DoorBadgeClosedEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AF308222CFC04F0044B9CB /* DoorBadgeClosedEventsViewController.swift */; };
+		F3BD0E902294990E00ABC7D7 /* GiftCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD0E8E2294990E00ABC7D7 /* GiftCellTableViewCell.swift */; };
+		F3BD0E912294990E00ABC7D7 /* GiftCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3BD0E8F2294990E00ABC7D7 /* GiftCellTableViewCell.xib */; };
+		F3BD0E932295C65900ABC7D7 /* DoorBadgeAddGiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD0E922295C65900ABC7D7 /* DoorBadgeAddGiftViewController.swift */; };
+		F3C25C1B227FD00F0030D47D /* DoorBadgeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C25C1A227FD00F0030D47D /* DoorBadgeWebViewController.swift */; };
+		F3C92464229F7C41002492F4 /* LoggedIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C92463229F7C41002492F4 /* LoggedIn.swift */; };
+		F3D04AE722948BD700AB3D14 /* DoorBadgeEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D04AE622948BD700AB3D14 /* DoorBadgeEventViewController.swift */; };
+		F3D3CB6922C4237100876F70 /* GiftAsFamilyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D3CB6722C4237100876F70 /* GiftAsFamilyTableViewCell.swift */; };
+		F3D3CB6A22C4237100876F70 /* GiftAsFamilyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D3CB6822C4237100876F70 /* GiftAsFamilyTableViewCell.xib */; };
+		F3DDB85C228A6659007CEC8A /* DoorBadgeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB85B228A6659007CEC8A /* DoorBadgeSettingsViewController.swift */; };
+		F3DDB85E228A7969007CEC8A /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB85D228A7969007CEC8A /* Facility.swift */; };
+		F3DDB860228A97AF007CEC8A /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DDB85F228A97AF007CEC8A /* FirebaseReference.swift */; };
+		F3ED752622FB945C0066B029 /* ModalTransitionMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED752522FB945C0066B029 /* ModalTransitionMediator.swift */; };
+		F3F34C052297360000044978 /* Gift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F34C042297360000044978 /* Gift.swift */; };
+		F3F34C07229C4E4500044978 /* EventGifts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F34C06229C4E4500044978 /* EventGifts.swift */; };
+		F3F34C0C229CE0C500044978 /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F34C0B229CE0C500044978 /* EventInfoViewController.swift */; };
+		F3F34C0E229EDCF600044978 /* GiftInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F34C0D229EDCF600044978 /* GiftInfoViewController.swift */; };
+		F3F947DC2276A60300B1D516 /* DoorBadgeAddEventAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F947DB2276A60300B1D516 /* DoorBadgeAddEventAdminViewController.swift */; };
+		F3FE261722AEE41600D5FE8B /* CenterScaleToFitImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE261622AEE41600D5FE8B /* CenterScaleToFitImageView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		675CF636B73F8CAC96337E34 /* Pods_DoorBadge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorBadge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC75CF02D4859742BB984DDE /* Pods-DoorBadge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorBadge.release.xcconfig"; path = "Target Support Files/Pods-DoorBadge/Pods-DoorBadge.release.xcconfig"; sourceTree = "<group>"; };
+		DDEEB1FC10907B2450D2B82B /* Pods-DoorBadge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorBadge.debug.xcconfig"; path = "Target Support Files/Pods-DoorBadge/Pods-DoorBadge.debug.xcconfig"; sourceTree = "<group>"; };
+		F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		F3117ABB22F1146900E933F1 /* LatestVideoURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestVideoURL.swift; sourceTree = "<group>"; };
+		F31F88722278F2F600D28F14 /* AddEventEventDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventEventDetailsCell.swift; sourceTree = "<group>"; };
+		F31F88732278F2F600D28F14 /* AddEventEventDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEventEventDetailsCell.xib; sourceTree = "<group>"; };
+		F327FFA522EFFE7F0005233C /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
+		F327FFA722F000A30005233C /* VideoPlayback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayback.swift; sourceTree = "<group>"; };
+		F32FF9F622D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryBookLoginViewController.swift; sourceTree = "<group>"; };
+		F32FF9F822D4F7A400FBF1D4 /* memoryBookHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoryBookHeaderCell.swift; sourceTree = "<group>"; };
+		F32FF9F922D4F7A400FBF1D4 /* memoryBookHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = memoryBookHeaderCell.xib; sourceTree = "<group>"; };
+		F32FF9FE22D5043D00FBF1D4 /* MemoryBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryBookViewController.swift; sourceTree = "<group>"; };
+		F32FFA0022D508DA00FBF1D4 /* memoryBookCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoryBookCommentCell.swift; sourceTree = "<group>"; };
+		F32FFA0122D508DA00FBF1D4 /* memoryBookCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = memoryBookCommentCell.xib; sourceTree = "<group>"; };
+		F33D243D228B135200BC973D /* FacilityEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityEvents.swift; sourceTree = "<group>"; };
+		F33D243F228B298C00BC973D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F35A11D222DC2C1B00D664C4 /* AddMemoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoryViewController.swift; sourceTree = "<group>"; };
+		F368DCC522DFBFF800C08BF7 /* MemoryBookEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryBookEvent.swift; sourceTree = "<group>"; };
+		F368DCC722E02CE900C08BF7 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		F3707B432270A6F1000A010B /* DoorBadge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoorBadge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3707B462270A6F1000A010B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3707B4B2270A6F1000A010B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F3707B4D2270A6F4000A010B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F3707B502270A6F4000A010B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F3707B522270A6F4000A010B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3707B5A227155D2000A010B /* DoorBadgeLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeLogInViewController.swift; sourceTree = "<group>"; };
+		F3707B5C227159B1000A010B /* DoorBadgePreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgePreLoginViewController.swift; sourceTree = "<group>"; };
+		F37504F622A2B467005B5193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F385F69B22E977A300FAA1B7 /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FullImageViewController.swift; path = DoorBadge/Controllers/FullImageViewController.swift; sourceTree = SOURCE_ROOT; };
+		F398D6D922A75DDD00E3E2C7 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		F39FCC4A22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeOpenEventsViewController.swift; sourceTree = "<group>"; };
+		F39FCC50227548C6007CD427 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		F39FCC5222754E7B007CD427 /* LocalCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCollection.swift; sourceTree = "<group>"; };
+		F39FCC54227551AD007CD427 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F39FCC872275FE4E007CD427 /* EventCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellTableViewCell.swift; sourceTree = "<group>"; };
+		F39FCC882275FE4E007CD427 /* EventCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCellTableViewCell.xib; sourceTree = "<group>"; };
+		F3A6953522B1FBE900904812 /* FamilyEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyEvents.swift; sourceTree = "<group>"; };
+		F3A6953722B1FCF300904812 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
+		F3AF308222CFC04F0044B9CB /* DoorBadgeClosedEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeClosedEventsViewController.swift; sourceTree = "<group>"; };
+		F3BD0E8E2294990E00ABC7D7 /* GiftCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCellTableViewCell.swift; sourceTree = "<group>"; };
+		F3BD0E8F2294990E00ABC7D7 /* GiftCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GiftCellTableViewCell.xib; sourceTree = "<group>"; };
+		F3BD0E922295C65900ABC7D7 /* DoorBadgeAddGiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeAddGiftViewController.swift; sourceTree = "<group>"; };
+		F3C25C1A227FD00F0030D47D /* DoorBadgeWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeWebViewController.swift; sourceTree = "<group>"; };
+		F3C92463229F7C41002492F4 /* LoggedIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedIn.swift; sourceTree = "<group>"; };
+		F3D04AE622948BD700AB3D14 /* DoorBadgeEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeEventViewController.swift; sourceTree = "<group>"; };
+		F3D3CB6722C4237100876F70 /* GiftAsFamilyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftAsFamilyTableViewCell.swift; sourceTree = "<group>"; };
+		F3D3CB6822C4237100876F70 /* GiftAsFamilyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GiftAsFamilyTableViewCell.xib; sourceTree = "<group>"; };
+		F3DDB85B228A6659007CEC8A /* DoorBadgeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeSettingsViewController.swift; sourceTree = "<group>"; };
+		F3DDB85D228A7969007CEC8A /* Facility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
+		F3DDB85F228A97AF007CEC8A /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseReference.swift; path = Data/FirebaseReference.swift; sourceTree = "<group>"; };
+		F3ED752522FB945C0066B029 /* ModalTransitionMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionMediator.swift; sourceTree = "<group>"; };
+		F3F34C042297360000044978 /* Gift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gift.swift; sourceTree = "<group>"; };
+		F3F34C06229C4E4500044978 /* EventGifts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGifts.swift; sourceTree = "<group>"; };
+		F3F34C0B229CE0C500044978 /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
+		F3F34C0D229EDCF600044978 /* GiftInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftInfoViewController.swift; sourceTree = "<group>"; };
+		F3F947DB2276A60300B1D516 /* DoorBadgeAddEventAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeAddEventAdminViewController.swift; sourceTree = "<group>"; };
+		F3FE261622AEE41600D5FE8B /* CenterScaleToFitImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterScaleToFitImageView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F3707B402270A6F1000A010B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5450E56CEB870421CA882A2 /* Pods_DoorBadge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAD98DB3276809E14B17D34E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DDEEB1FC10907B2450D2B82B /* Pods-DoorBadge.debug.xcconfig */,
+				BC75CF02D4859742BB984DDE /* Pods-DoorBadge.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BACA00409E914A0BE07FA3BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				675CF636B73F8CAC96337E34 /* Pods_DoorBadge.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3707B3A2270A6F0000A010B = {
+			isa = PBXGroup;
+			children = (
+				F3707B452270A6F1000A010B /* DoorBadge */,
+				F3707B442270A6F1000A010B /* Products */,
+				AAD98DB3276809E14B17D34E /* Pods */,
+				BACA00409E914A0BE07FA3BA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F3707B442270A6F1000A010B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3707B432270A6F1000A010B /* DoorBadge.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3707B452270A6F1000A010B /* DoorBadge */ = {
+			isa = PBXGroup;
+			children = (
+				F3707B462270A6F1000A010B /* AppDelegate.swift */,
+				F3DDB85F228A97AF007CEC8A /* FirebaseReference.swift */,
+				F39FCC862275FE32007CD427 /* Cells */,
+				F39FCC4D2275459D007CD427 /* Data */,
+				F39FCC4C22754593007CD427 /* Models */,
+				F3707B4D2270A6F4000A010B /* Assets.xcassets */,
+				F3707B522270A6F4000A010B /* Info.plist */,
+				F37504F622A2B467005B5193 /* GoogleService-Info.plist */,
+				F39FCC4E227545BC007CD427 /* Views */,
+				F39FCC4F227545F9007CD427 /* Controllers */,
+			);
+			path = DoorBadge;
+			sourceTree = "<group>";
+		};
+		F39FCC4C22754593007CD427 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F398D6D922A75DDD00E3E2C7 /* LoadingButton.swift */,
+				F39FCC50227548C6007CD427 /* Event.swift */,
+				F3F34C042297360000044978 /* Gift.swift */,
+				F368DCC722E02CE900C08BF7 /* Memory.swift */,
+				F39FCC54227551AD007CD427 /* User.swift */,
+				F33D243D228B135200BC973D /* FacilityEvents.swift */,
+				F368DCC522DFBFF800C08BF7 /* MemoryBookEvent.swift */,
+				F3A6953522B1FBE900904812 /* FamilyEvents.swift */,
+				F3C92463229F7C41002492F4 /* LoggedIn.swift */,
+				F3117ABB22F1146900E933F1 /* LatestVideoURL.swift */,
+				F3F34C06229C4E4500044978 /* EventGifts.swift */,
+				F3DDB85D228A7969007CEC8A /* Facility.swift */,
+				F3A6953722B1FCF300904812 /* Family.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F39FCC4D2275459D007CD427 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F3ED752522FB945C0066B029 /* ModalTransitionMediator.swift */,
+				F39FCC5222754E7B007CD427 /* LocalCollection.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F39FCC4E227545BC007CD427 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F3707B4A2270A6F1000A010B /* Main.storyboard */,
+				F385F69B22E977A300FAA1B7 /* FullImageViewController.swift */,
+				F3707B4F2270A6F4000A010B /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F39FCC4F227545F9007CD427 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F35A11D222DC2C1B00D664C4 /* AddMemoryViewController.swift */,
+				F3FE261622AEE41600D5FE8B /* CenterScaleToFitImageView.swift */,
+				F3F34C0B229CE0C500044978 /* EventInfoViewController.swift */,
+				F3F34C0D229EDCF600044978 /* GiftInfoViewController.swift */,
+				F32FF9F622D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift */,
+				F33D243F228B298C00BC973D /* TabBarController.swift */,
+				F3707B5C227159B1000A010B /* DoorBadgePreLoginViewController.swift */,
+				F3707B5A227155D2000A010B /* DoorBadgeLogInViewController.swift */,
+				F39FCC4A22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift */,
+				F3D04AE622948BD700AB3D14 /* DoorBadgeEventViewController.swift */,
+				F3F947DB2276A60300B1D516 /* DoorBadgeAddEventAdminViewController.swift */,
+				F3BD0E922295C65900ABC7D7 /* DoorBadgeAddGiftViewController.swift */,
+				F3DDB85B228A6659007CEC8A /* DoorBadgeSettingsViewController.swift */,
+				F3C25C1A227FD00F0030D47D /* DoorBadgeWebViewController.swift */,
+				F3AF308222CFC04F0044B9CB /* DoorBadgeClosedEventsViewController.swift */,
+				F32FF9FE22D5043D00FBF1D4 /* MemoryBookViewController.swift */,
+				F327FFA522EFFE7F0005233C /* VideoRecorderViewController.swift */,
+				F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */,
+				F327FFA722F000A30005233C /* VideoPlayback.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F39FCC862275FE32007CD427 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F31F88722278F2F600D28F14 /* AddEventEventDetailsCell.swift */,
+				F31F88732278F2F600D28F14 /* AddEventEventDetailsCell.xib */,
+				F39FCC872275FE4E007CD427 /* EventCellTableViewCell.swift */,
+				F39FCC882275FE4E007CD427 /* EventCellTableViewCell.xib */,
+				F3BD0E8E2294990E00ABC7D7 /* GiftCellTableViewCell.swift */,
+				F3BD0E8F2294990E00ABC7D7 /* GiftCellTableViewCell.xib */,
+				F3D3CB6822C4237100876F70 /* GiftAsFamilyTableViewCell.xib */,
+				F32FF9F822D4F7A400FBF1D4 /* memoryBookHeaderCell.swift */,
+				F32FF9F922D4F7A400FBF1D4 /* memoryBookHeaderCell.xib */,
+				F3D3CB6722C4237100876F70 /* GiftAsFamilyTableViewCell.swift */,
+				F32FFA0022D508DA00FBF1D4 /* memoryBookCommentCell.swift */,
+				F32FFA0122D508DA00FBF1D4 /* memoryBookCommentCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F3707B422270A6F1000A010B /* DoorBadge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3707B552270A6F4000A010B /* Build configuration list for PBXNativeTarget "DoorBadge" */;
+			buildPhases = (
+				BBF840301B04B56817FD900C /* [CP] Check Pods Manifest.lock */,
+				F3707B3F2270A6F1000A010B /* Sources */,
+				F3707B402270A6F1000A010B /* Frameworks */,
+				F3707B412270A6F1000A010B /* Resources */,
+				ACB176654FB431B3B4F64446 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DoorBadge;
+			productName = DoorBadge;
+			productReference = F3707B432270A6F1000A010B /* DoorBadge.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F3707B3B2270A6F0000A010B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Robert Cadorette";
+				TargetAttributes = {
+					F3707B422270A6F1000A010B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = F3707B3E2270A6F0000A010B /* Build configuration list for PBXProject "DoorBadge" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3707B3A2270A6F0000A010B;
+			productRefGroup = F3707B442270A6F1000A010B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3707B422270A6F1000A010B /* DoorBadge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3707B412270A6F1000A010B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F31F88752278F2F600D28F14 /* AddEventEventDetailsCell.xib in Resources */,
+				F32FFA0322D508DA00FBF1D4 /* memoryBookCommentCell.xib in Resources */,
+				F3D3CB6A22C4237100876F70 /* GiftAsFamilyTableViewCell.xib in Resources */,
+				F37504F722A2B467005B5193 /* GoogleService-Info.plist in Resources */,
+				F32FF9FB22D4F7A400FBF1D4 /* memoryBookHeaderCell.xib in Resources */,
+				F39FCC8A2275FE4E007CD427 /* EventCellTableViewCell.xib in Resources */,
+				F3707B512270A6F4000A010B /* LaunchScreen.storyboard in Resources */,
+				F3707B4E2270A6F4000A010B /* Assets.xcassets in Resources */,
+				F3BD0E912294990E00ABC7D7 /* GiftCellTableViewCell.xib in Resources */,
+				F3707B4C2270A6F1000A010B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ACB176654FB431B3B4F64446 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoorBadge/Pods-DoorBadge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DoorBadge/Pods-DoorBadge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DoorBadge/Pods-DoorBadge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBF840301B04B56817FD900C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DoorBadge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F3707B3F2270A6F1000A010B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F398D6DA22A75DDD00E3E2C7 /* LoadingButton.swift in Sources */,
+				F3F34C052297360000044978 /* Gift.swift in Sources */,
+				F31F88742278F2F600D28F14 /* AddEventEventDetailsCell.swift in Sources */,
+				F3707B5B227155D2000A010B /* DoorBadgeLogInViewController.swift in Sources */,
+				F3F34C0C229CE0C500044978 /* EventInfoViewController.swift in Sources */,
+				F385F69C22E977A300FAA1B7 /* FullImageViewController.swift in Sources */,
+				F39FCC4B22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift in Sources */,
+				F3F34C07229C4E4500044978 /* EventGifts.swift in Sources */,
+				F3AF308322CFC04F0044B9CB /* DoorBadgeClosedEventsViewController.swift in Sources */,
+				F35A11D322DC2C1B00D664C4 /* AddMemoryViewController.swift in Sources */,
+				F327FFA822F000A30005233C /* VideoPlayback.swift in Sources */,
+				F3707B5D227159B1000A010B /* DoorBadgePreLoginViewController.swift in Sources */,
+				F32FF9FA22D4F7A400FBF1D4 /* memoryBookHeaderCell.swift in Sources */,
+				F32FF9F722D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift in Sources */,
+				F3D04AE722948BD700AB3D14 /* DoorBadgeEventViewController.swift in Sources */,
+				F3F947DC2276A60300B1D516 /* DoorBadgeAddEventAdminViewController.swift in Sources */,
+				F33D2440228B298C00BC973D /* TabBarController.swift in Sources */,
+				F3A6953622B1FBE900904812 /* FamilyEvents.swift in Sources */,
+				F3BD0E902294990E00ABC7D7 /* GiftCellTableViewCell.swift in Sources */,
+				F3F34C0E229EDCF600044978 /* GiftInfoViewController.swift in Sources */,
+				F39FCC55227551AD007CD427 /* User.swift in Sources */,
+				F3C25C1B227FD00F0030D47D /* DoorBadgeWebViewController.swift in Sources */,
+				F3DDB85C228A6659007CEC8A /* DoorBadgeSettingsViewController.swift in Sources */,
+				F3BD0E932295C65900ABC7D7 /* DoorBadgeAddGiftViewController.swift in Sources */,
+				F33D243E228B135200BC973D /* FacilityEvents.swift in Sources */,
+				F3FE261722AEE41600D5FE8B /* CenterScaleToFitImageView.swift in Sources */,
+				F3117ABC22F1146900E933F1 /* LatestVideoURL.swift in Sources */,
+				F32FFA0222D508DA00FBF1D4 /* memoryBookCommentCell.swift in Sources */,
+				F39FCC5322754E7B007CD427 /* LocalCollection.swift in Sources */,
+				F3DDB860228A97AF007CEC8A /* FirebaseReference.swift in Sources */,
+				F3D3CB6922C4237100876F70 /* GiftAsFamilyTableViewCell.swift in Sources */,
+				F368DCC622DFBFF800C08BF7 /* MemoryBookEvent.swift in Sources */,
+				F3C92464229F7C41002492F4 /* LoggedIn.swift in Sources */,
+				F327FFA622EFFE7F0005233C /* VideoRecorderViewController.swift in Sources */,
+				F39FCC51227548C6007CD427 /* Event.swift in Sources */,
+				F368DCC822E02CE900C08BF7 /* Memory.swift in Sources */,
+				F3A6953822B1FCF300904812 /* Family.swift in Sources */,
+				F3117ABA22F0F8AE00E933F1 /* UIButtonExtension.swift in Sources */,
+				F3ED752622FB945C0066B029 /* ModalTransitionMediator.swift in Sources */,
+				F32FF9FF22D5043D00FBF1D4 /* MemoryBookViewController.swift in Sources */,
+				F3707B472270A6F1000A010B /* AppDelegate.swift in Sources */,
+				F3DDB85E228A7969007CEC8A /* Facility.swift in Sources */,
+				F39FCC892275FE4E007CD427 /* EventCellTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F3707B4A2270A6F1000A010B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3707B4B2270A6F1000A010B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F3707B4F2270A6F4000A010B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3707B502270A6F4000A010B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F3707B532270A6F4000A010B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F3707B542270A6F4000A010B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3707B562270A6F4000A010B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDEEB1FC10907B2450D2B82B /* Pods-DoorBadge.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZR2CVRA85;
+				INFOPLIST_FILE = DoorBadge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = au.door.badge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F3707B572270A6F4000A010B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC75CF02D4859742BB984DDE /* Pods-DoorBadge.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NZR2CVRA85;
+				INFOPLIST_FILE = DoorBadge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = au.door.badge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F3707B3E2270A6F0000A010B /* Build configuration list for PBXProject "DoorBadge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3707B532270A6F4000A010B /* Debug */,
+				F3707B542270A6F4000A010B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3707B552270A6F4000A010B /* Build configuration list for PBXNativeTarget "DoorBadge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3707B562270A6F4000A010B /* Debug */,
+				F3707B572270A6F4000A010B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F3707B3B2270A6F0000A010B /* Project object */;
+}

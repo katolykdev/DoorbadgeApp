@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="giftCell" rowHeight="79" id="KGk-i7-Jjw" customClass="GiftCellTableViewCell" customModule="DoorBadge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Lp-8t-uK9">
+                        <rect key="frame" x="8" y="8" width="112" height="112"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z6q-mI-O6M">
+                                <rect key="frame" x="4" y="4" width="104" height="104"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="EiR-Un-2Mr"/>
+                                    <constraint firstAttribute="height" constant="104" id="Yrf-FP-zM7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93843334913253784" green="0.94592982530593872" blue="0.95903414487838745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="z6q-mI-O6M" firstAttribute="centerY" secondItem="4Lp-8t-uK9" secondAttribute="centerY" id="2wX-OQ-cbW"/>
+                            <constraint firstAttribute="height" constant="112" id="R84-dz-seP"/>
+                            <constraint firstItem="z6q-mI-O6M" firstAttribute="centerX" secondItem="4Lp-8t-uK9" secondAttribute="centerX" id="gH1-Ww-o83"/>
+                            <constraint firstAttribute="width" constant="112" id="kbo-JK-AHb"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the gift title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUQ-Np-qAC">
+                        <rect key="frame" x="130" y="16" width="182" height="23"/>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                        <color key="textColor" red="0.36470588235294116" green="0.45098039215686275" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9B-KE-Vgd">
+                        <rect key="frame" x="132" y="47" width="32" height="16"/>
+                        <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qUQ-Np-qAC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="6zQ-vK-Uyg"/>
+                    <constraint firstAttribute="trailing" secondItem="qUQ-Np-qAC" secondAttribute="trailing" constant="8" id="FPN-HA-KYc"/>
+                    <constraint firstItem="4Lp-8t-uK9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XOa-g2-R1r"/>
+                    <constraint firstItem="qUQ-Np-qAC" firstAttribute="leading" secondItem="4Lp-8t-uK9" secondAttribute="trailing" constant="10" id="Xlo-gJ-AxG"/>
+                    <constraint firstItem="4Lp-8t-uK9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bwI-IR-DUJ"/>
+                    <constraint firstItem="K9B-KE-Vgd" firstAttribute="leading" secondItem="4Lp-8t-uK9" secondAttribute="trailing" constant="12" id="kSD-0y-ker"/>
+                    <constraint firstItem="K9B-KE-Vgd" firstAttribute="top" secondItem="qUQ-Np-qAC" secondAttribute="bottom" constant="8" id="wNh-0M-4pd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="giftGiverLabel" destination="K9B-KE-Vgd" id="FFW-zd-aAL"/>
+                <outlet property="giftImageView" destination="z6q-mI-O6M" id="3cW-lH-MoH"/>
+                <outlet property="giftTitleLabel" destination="qUQ-Np-qAC" id="t8K-Y0-sXk"/>
+            </connections>
+            <point key="canvasLocation" x="169.56521739130437" y="-13.392857142857142"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" rowHeight="536" id="KGk-i7-Jjw" customClass="memoryBookHeaderCell" customModule="DoorBadge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="716" height="536"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="716" height="535.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Loving Memory..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4u-7q-opU">
+                        <rect key="frame" x="265.5" y="80" width="185" height="29.5"/>
+                        <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swp-fP-3mL">
+                        <rect key="frame" x="233" y="139.5" width="250" height="250"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-i5-sSJ">
+                                <rect key="frame" x="8" y="8" width="234" height="234"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="234" id="ijs-ha-OVd"/>
+                                    <constraint firstAttribute="height" constant="234" id="kcf-4b-D7b"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5ZG-i5-sSJ" firstAttribute="centerX" secondItem="Swp-fP-3mL" secondAttribute="centerX" id="S9v-s6-4ig"/>
+                            <constraint firstAttribute="width" constant="250" id="h0n-vW-gXH"/>
+                            <constraint firstItem="5ZG-i5-sSJ" firstAttribute="centerY" secondItem="Swp-fP-3mL" secondAttribute="centerY" id="xOD-nk-tVo"/>
+                            <constraint firstAttribute="height" constant="250" id="xtn-Ri-9kz"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6W-KH-zzp">
+                        <rect key="frame" x="301" y="419.5" width="114.5" height="24"/>
+                        <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08.09.1930 - 05.11.2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZE-gx-HvY">
+                        <rect key="frame" x="262" y="467.5" width="192.5" height="20"/>
+                        <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="C6W-KH-zzp" firstAttribute="top" secondItem="Swp-fP-3mL" secondAttribute="bottom" constant="30" id="6Rs-yC-AMM"/>
+                    <constraint firstItem="o4u-7q-opU" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="PaW-6V-Yqr"/>
+                    <constraint firstItem="fZE-gx-HvY" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="T5o-j4-ShI"/>
+                    <constraint firstItem="Swp-fP-3mL" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="a57-gm-9o4"/>
+                    <constraint firstItem="o4u-7q-opU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="80" id="aRK-tF-XhE"/>
+                    <constraint firstItem="C6W-KH-zzp" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="dAY-5b-fz6"/>
+                    <constraint firstItem="fZE-gx-HvY" firstAttribute="top" secondItem="C6W-KH-zzp" secondAttribute="bottom" constant="24" id="fBL-OD-pdx"/>
+                    <constraint firstItem="Swp-fP-3mL" firstAttribute="top" secondItem="o4u-7q-opU" secondAttribute="bottom" constant="30" id="fPy-AH-enU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="memoryBookDates" destination="fZE-gx-HvY" id="ib1-vH-pdz"/>
+                <outlet property="memoryBookImageView" destination="5ZG-i5-sSJ" id="3eH-7I-vmx"/>
+                <outlet property="memoryBookName" destination="C6W-KH-zzp" id="LUR-pg-Ebt"/>
+            </connections>
+            <point key="canvasLocation" x="200.00000000000003" y="353.57142857142856"/>
+        </tableViewCell>
+    </objects>
+</document>
