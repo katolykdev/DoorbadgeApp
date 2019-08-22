@@ -144,32 +144,22 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
             docRef.updateData(["isOpen" : false])
          
             if logInType == "family" {
-                
 //                 EventGifts.gifts[indexPathRowNumber].updateValue(false, forKey: "thankYouSent")
 //
                 if let index = FamilyEvents.currentEvents.index(where: {$0.eventId == eventId}) {
-                    
                     FamilyEvents.pastEvents.append(FamilyEvents.currentEvents[index])
                     
                     FamilyEvents.currentEvents.remove(at: index)
-                    
                 }
-            
             } else {
-                
                 if let index = FacilityEvents.currentEvents.index(where: {$0.eventId == eventId}) {
-                    
                     FacilityEvents.pastEvents.append(FacilityEvents.currentEvents[index])
                     
                     FacilityEvents.currentEvents.remove(at: index)
-                    
                 }
-
             }
 //            EventGifts.gifts[indexPathRowNumber].updateValue(false, forKey: "thankYouSent")
-            
         } else {
-            
              //IS CLOSED CLOSED CLOSED CLOSED CLOSED CLOSED CLOSED
             
             //MAKE CLOSED
@@ -183,41 +173,28 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
             docRef.updateData(["isOpen" : true])
             
             if logInType == "family" {
-                
                 //                 EventGifts.gifts[indexPathRowNumber].updateValue(false, forKey: "thankYouSent")
                 //
                 if let index = FamilyEvents.pastEvents.index(where: {$0.eventId == eventId}) {
-                    
                     FamilyEvents.currentEvents.append(FamilyEvents.pastEvents[index])
                     
                     FamilyEvents.pastEvents.remove(at: index)
-                    
                 }
-                
             } else {
-                
                 if let index = FacilityEvents.pastEvents.index(where: {$0.eventId == eventId}) {
-                    
                     FacilityEvents.currentEvents.append(FacilityEvents.pastEvents[index])
                     
                     FacilityEvents.pastEvents.remove(at: index)
-                    
                 }
-                
             }
-
         }
-    
     }
-    
     
     @IBOutlet weak var phoneButtonOutlet: UIButton!
     @IBAction func phoneButton(_ sender: Any) {
         if let number = phoneButtonOutlet.title(for: .normal) {
             if number.isValid(regex: .phone) {
-               
                 dialNumber(number: number)
-                
             }
         }
     }
@@ -253,17 +230,9 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
                  eventImageView!.sd_setImage(with: URL(string: thisEvent.image))
                 
                 print(FacilityEvents.currentEvents[index])
-            
-            
             }
-            
         }
-        
-        
-        
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -274,8 +243,6 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
         button1.title = "Edit Event"
         self.navigationItem.rightBarButtonItem  = button1
         }
-        
-        
         
         deceasedNameLabel.text = deceasedNameLabelText
         dateToDateLabel.text = dateToDateLabelText.replacingOccurrences(of: "/", with: ".")
@@ -290,13 +257,10 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
 //        }
         
         if logInType == "family" {
-            
             markAsClosedButton.isHidden = true
-            
         } else {
             
         }
-
 
         let screenSize = view.bounds.width
         
@@ -327,69 +291,43 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
         
         familyAddressLabel.text = familyAddressLabelText
         
-        
         phoneButtonOutlet.setTitle(familyPhoneNumberLabelText, for: .normal)
         mailButtonOutlet.setTitle(familyEmailLabelText, for: .normal)
-  
         
         phoneButtonOutlet.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         mailButtonOutlet.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
- 
         
         if eventIsOpen {
-            
             markAsClosedButton.setTitle("Mark As Closed", for: .normal)
-            
         } else {
-            
             markAsClosedButton.setTitle("Mark As Open", for: .normal)
-            
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if submittedGift == true {
             self.navigationController?.popViewController(animated: true)
         }
-       
-        
     }
     
     @objc func editEventModal(sender: UIButton!) {
-        
         performSegue(withIdentifier: "editEventModal", sender: self)
-        
     }
-    
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editEventModal" {
-            
             if let editEventVC = segue.destination as? DoorBadgeAddEventAdminViewController {
-            
-
-                
                 editEventVC.isEditing = true
                 
                 editEventVC.existingEvent = event
-                
-                
                 
                 let nextPageBack = "Event"
                 let backItem = UIBarButtonItem()
                 backItem.title = nextPageBack
                 navigationItem.backBarButtonItem = backItem
-                
-                
             }
-            
         }
-        
     }
-    
-    
 }
 
 extension UIImageView {
@@ -447,8 +385,3 @@ extension String {
         }
     }
 }
-
-
-
-
-

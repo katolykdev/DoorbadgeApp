@@ -85,9 +85,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             EventGifts.gifts[indexPathRowNumber].thankYouSent = false
             
             defaults.set("true", forKey: "thanksFirst")
-
         } else {
-            
             thankYouWasSent = true
            
             sentUnsentButton.setTitle("Mark As Not Sent", for: .normal)
@@ -102,11 +100,8 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             EventGifts.gifts[indexPathRowNumber].thankYouSent = true
       
             defaults.set("false", forKey: "thanksFirst")
-            
         }
-        
     }
-   
     
     func setupImages(_ images: [String]){
         print("did run setupImages")
@@ -127,9 +122,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             scrollView.maximumZoomScale = 10.0
             scrollView.addSubview(imageView)
             scrollView.delegate = self as? UIScrollViewDelegate
-           
         }
-        
     }
     
 //    func setupImages(_ images: [String]){
@@ -167,9 +160,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
         self.navigationController?.dismiss(animated: true, completion: nil)
         
         if let index = EventGifts.gifts.index(where: {$0.giftId == giftId}) {
-            
-            
-            
             let gift = EventGifts.gifts[index]
             
             print(gift)
@@ -229,10 +219,8 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                         print("from count 2 : \(image)")
                     }
                     self.setupImages(self.imagesArray)
-                    
                 }
             }
-            
         }
     }
 
@@ -242,7 +230,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
         if defaults.string(forKey: "logInType") == "family" {
             
         } else {
-            
             sentUnsentButton.isHidden = true
             thankYouWasSentView.isHidden = true
             thanks1.isHidden = true

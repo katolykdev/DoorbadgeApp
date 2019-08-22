@@ -14,12 +14,9 @@ import FirebaseStorage
 import FirebaseFirestore
 import AVFoundation
 
-
 class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-
     
     @IBOutlet weak var videoButton: UIButton!
-    
     
     let db = Firestore.firestore()
     let storage = Storage.storage()
@@ -35,14 +32,12 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
     let url = URL(string: LatestVideoURL.pathString)
     
     var memoryDictionary: [String: Any] = [
-        
         "date": "",
         "image": "",
         "memory":"",
         "name":"",
         "video":"",
         "videoThumbnail":""
-        
     ]
     
     @IBOutlet weak var closeButton: UIButton!
@@ -51,14 +46,8 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var submitButton: LoadingButton!
     
-    
-    
     @IBAction func closeModal(_ sender: Any) {
-        
         self.dismiss(animated: true, completion: {})
-        
-        
-        
     }
     
     @IBAction func videoButtonDidPress(_ sender: UIButton) {
@@ -71,7 +60,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     func scaleImage(image:UIImage, view:UIImageView, customWidth: CGFloat?) -> UIImage {
-        
         let oldWidth = image.size.width
         let oldHeight = image.size.height
         var scaleFactor:CGFloat
@@ -83,35 +71,26 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
             let viewWidth:CGFloat = customWidth * 3
             
             if oldWidth > oldHeight {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
-                
-                
             } else {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             }
-            
         } else {
-            
             let viewWidth:CGFloat = view.bounds.width * 3
             
             if oldWidth > oldHeight {
-                
                 scaleFactor = oldWidth/oldHeight
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             } else {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             }
-            
         }
         
         UIGraphicsBeginImageContext(CGSize(width:newWidth, height:newHeight))
@@ -119,11 +98,9 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
-        
     }
     
     func saveVideo(url: URL, memoryID: String) {
-        
         let filename = memoryID
         self.videoButton.setImage(nil, for: .normal)
         let vidUploadTask = Storage.storage().reference().child("comment-videos").child(filename).putFile(from: url, metadata: nil, completion:  { (metadata, error) in
@@ -143,7 +120,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                             if let error = error {
                                 print(error)
                             } else {
-                                
                                 //Set download image URL to variable as a String
                                 let newVidURL = url?.absoluteString ?? ""
                           
@@ -153,16 +129,12 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                 self.memoryDictionary.updateValue(newVidURL, forKey: "video")
 
                                 //Because this is based on date as the unique identifier, if 2 comments submitted at the same time, won't work as expected
-                                
                             }
                         })
                 
                 self.dismiss(animated: true, completion: {
                     
-               
-                    
                 })
-                
             }
         })
    
@@ -186,21 +158,13 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                             
                             self.dismiss(animated: true, completion: {
                                 
-                                
                             })
-                            
                         }
                     })
-                    
-                    
-                    
                 })
-                
             }
-  
         }
     }
-    
     
     @IBAction func submitMemory(_ sender: Any) {
         submitButton.isEnabled = false
@@ -217,7 +181,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
             MemoryBookEvent.comments.append(newMemory)
         }
         
-        
         //getEvent
         var memoriesRef: DocumentReference? = nil
         memoriesRef = eventRef.document(currentEventId!).collection("comments").addDocument(data: memoryDictionary) { err in
@@ -226,7 +189,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
             } else {
                 
                 let memoryId = memoriesRef?.documentID
-              
                 
                 //Reference Facility in Firebase
                 let eventRef = self.db.collection("events").document(self.currentEventId!)
@@ -306,12 +268,8 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                         }
                                         return mutableMemory
                                     }
-                                    
-                                    
                                 }
                             })
-                            
-                         
                     })
                     
                     newImageFullRef.putData(dataFull).observe(.progress, handler:
@@ -330,12 +288,8 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                         self.photoButton.setTitle("", for: .normal)
 //                                        self.photoButton.setImage(UIImage(named: "sentIcon"), for: .normal)
 //                                    }
-                                    
-               
                                 })
-
                             }
-                            
                     })
                     
                     newImageFullRef.putData(dataFull).observe(.success, handler:
@@ -351,14 +305,11 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                             
                                             self.dismiss(animated: true, completion: {
                                                 
-                                                
                                             })
-                                            
                                         }
                                     })
                                 }
                             })
-                            
                     })
                 }
                 
@@ -418,7 +369,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                                 return mutableMemory
                                             }
                                         
-                                        
                                         let filename = memoryId
                                         self.videoButton.setImage(nil, for: .normal)
                                         
@@ -462,10 +412,7 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                                 
                                                 self.dismiss(animated: true, completion: {
                                                     
-                                               
-                                                    
                                                 })
-                                                
                                             }
                                         })
                                         
@@ -473,7 +420,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                             let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
                                                 / Double(snapshot.progress!.totalUnitCount)
                                          
-                                            
                                             self.videoButton.setTitle("\(percentComplete.roundToInt())%", for: .normal)
                                             
                                             if percentComplete.roundToInt() == 100 {
@@ -489,18 +435,11 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                                             
                                                             self.dismiss(animated: true, completion: {
                                                                 
-                                                                
                                                             })
-                                                            
                                                         }
                                                     })
-                                                    
-                                                    
-                                                    
                                                 })
-                                                
                                             }
-                                            
                                         }
                                         
                                         vidUploadTask.observe(.success) { (snapshot) in
@@ -514,36 +453,22 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                                             
                                                             self.dismiss(animated: true, completion: {
                                                                 
-                                                                
                                                             })
-                                                            
                                                         }
                                                     })
                                                 }
                                             })
-                                            
                                         }
-                                        
-                                        
                                     }
                                 })
                         })
-                    
-                    
-                    
-
                 } else if (self.videoButton.image(for: .normal) == UIImage(named: "videoIcon")) && (self.photoButton.image(for: .normal) == UIImage(named: "photoIcon"))  {
 
                     self.dismiss(animated: true, completion: {
                         
-                    
-                        
                     })
-
                 }
-
                 //////////////////////////////////////////////////////////////////////////////
-
             }
         }
     }
@@ -558,7 +483,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
             photoButton.setImage(image, for: .normal)
         }
         self.dismiss(animated: true, completion:  nil)
-  
     }
     
     @IBAction func imagePickerDidTap(_ sender: UIButton) {
@@ -573,7 +497,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
         self.present(image, animated: true)
         {
             //After is complete
-            
         }
     }
     
@@ -592,7 +515,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     override func viewDidLoad() {
-        
         self.navigationController?.navigationBar.isHidden = true
         if LatestVideoURL.pathString != "" {
             
@@ -600,9 +522,7 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
             if let url = URL(string: urlstring) {
             
                 videoButton.setImage(generateThumbnail(path: url), for: .normal)
-                
             }
-            
         }
         
         let toolBar = UIToolbar()
@@ -616,12 +536,10 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddMemoryViewController.viewTapped(gestureRecognizer:)))
         
         view.addGestureRecognizer(tapGesture)
-
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -632,9 +550,7 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
             let urlstring = LatestVideoURL.pathString
             
             if let url = URL(string: urlstring) {
-                
                 videoButton.setImage(generateThumbnail(path: url), for: .normal)
-                
             }
         }
     }
