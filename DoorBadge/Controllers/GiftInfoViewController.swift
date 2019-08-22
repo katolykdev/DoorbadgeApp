@@ -30,8 +30,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     
     @IBOutlet var giftDescriptionLabel: UILabel!
     
-    
-    
     var imageArray: [String] = []
 
     var giftId = ""
@@ -40,16 +38,13 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     var giftDescription: String = ""
     var giftGiver: String = ""
     
- 
     var giftMainImage = ""
     var giftSecondaryImages: [String] = []
   
     var giftFacilityId = ""
     var giftThankYouSent: Bool = false
-
     
     var imagesArray: [String] = []
-    
     
     var logInType = ""
     
@@ -331,12 +326,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                     
                 }
             }
-            
-        
-
-        
-
-        
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 10.0
         
@@ -355,32 +344,18 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
         sentUnsentButton.layer.cornerRadius = 5
         
         if thankYouWasSent {
-            
             sentUnsentButton.setTitle("Mark As Not Sent", for: .normal)
             thankYouWasSentView.isHidden = false
-         
         } else {
-    
             sentUnsentButton.setTitle("Mark As Sent", for: .normal)
             thankYouWasSentView.isHidden = true
-            
         }
         
         scrollHostView.addSubview(scrollView)
-        
-    
-        
-        
-        
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
-       
             if let index = EventGifts.gifts.index(where: {$0.giftId == giftId}) {
-                
-                
-            
                 let gift = EventGifts.gifts[index]
                 
                 print(gift)
@@ -426,27 +401,19 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                             print("from count 2 : \(image)")
                         }
                         self.setupImages(self.imagesArray)
-                        
                     }
                 }
- 
             }
-            
-        
     }
     
     @objc func editGifttModal(sender: UIButton!) {
-        
         performSegue(withIdentifier: "editGiftModal", sender: self)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "editGiftModal" {
             
             if let editGiftVC = segue.destination as? DoorBadgeAddGiftViewController {
-                
-                
                 
                 editGiftVC.editingGift = true
                 editGiftVC.giftTitle = giftTitle
@@ -458,20 +425,12 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                 editGiftVC.giftFacilityId = giftFacilityId
                 editGiftVC.giftThankYouSent = giftThankYouSent
                 editGiftVC.giftGiftID = giftId
-
-                
                 
                 let nextPageBack = "Gift"
                 let backItem = UIBarButtonItem()
                 backItem.title = nextPageBack
                 navigationItem.backBarButtonItem = backItem
-                
-                
             }
-            
-            
-            
         }
     }
-    
 }

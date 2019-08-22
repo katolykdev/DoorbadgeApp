@@ -18,23 +18,18 @@ enum DBReference {
     //Mark: - Public
     
     func reference() -> DatabaseReference {
-        
         switch self {
         case .root:
             return rootRef
         default:
             return rootRef.child(path)
-            
         }
         //return ...
     }
     
     private var rootRef: DatabaseReference {
-        
         return Database.database().reference()
-        
     }
-    
     
     private var path: String {
         switch self {
@@ -43,8 +38,5 @@ enum DBReference {
         case .users(let uid):
             return "users/\(uid)"
         }
-        
-        
     }
-    
 }

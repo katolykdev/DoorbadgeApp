@@ -17,7 +17,6 @@ typealias Completion = (_ errMsg: String?, _ data: AnyObject?) -> Void
 class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var logInPageTitle: UILabel!
     
-    
     @IBOutlet weak var dbEmailTextField: UITextField!
     
     @IBOutlet weak var dbPasswordTextField: UITextField!
@@ -26,7 +25,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
     
     let facilityRef = Firestore.firestore().collection("facilities")
     let familyRef = Firestore.firestore().collection("users")
-
     
     var logInPageTitleText = ""
     
@@ -34,7 +32,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
     var currentFacility: Facility!
 
     override func viewDidLoad() {
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DoorBadgeLogInViewController.dismissKeyboard))
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
@@ -47,7 +44,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        
         
         dbLogInButton.originalButtonText = "Log in"
         
@@ -67,21 +63,14 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
         
         logInPageTitle.text = "\(logInPageTitleText) Login"
         logInPageTitle.addCharacterSpacing(kernValue: 1.10)
-        
-        
-        
     }
-    
-    
     
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        
         view.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
         } else {
@@ -93,16 +82,13 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
-                
             })
-            
             return true
         }
         return false
     }
     
     @IBAction func dbForgotPassword(_ sender: UIButton) {
-        
         let forgotPasswordAlert = UIAlertController(title: "Forgot password?", message: "Enter email address", preferredStyle: .alert)
         forgotPasswordAlert.addTextField { (textField) in
             textField.placeholder = "Enter email address"
@@ -128,17 +114,11 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
         }))
         //PRESENT ALERT
         self.present(forgotPasswordAlert, animated: true, completion: nil)
-        
     }
     
     @IBAction func dbLoginDidTap(_ sender: UIButton) {
-        
-        
         dbLogInButton.isEnabled = false
         dbLogInButton.showLoading()
-        
-        
-        
         
             self.logIn(onComplete:  { (errMsg, data) in
                 guard errMsg == nil else {
@@ -149,23 +129,15 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
 //                    self.dbLogInButton.hideLoading()
                     self.dbLogInButton.isEnabled = true
                     return
-                    
                 }
             })
-    
-
     }
     
     func stopButtonAnimation() {
-        
         dbLogInButton.hideLoading()
-
     }
     
-    
     func logIn(onComplete: Completion?) {
-
-
         if dbEmailTextField.text != "" && dbPasswordTextField.text != "" {
             
             let email = dbEmailTextField.text!
@@ -190,14 +162,9 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                 
                                 familyDocRef.getDocument { (document, error) in
                                     if let document = document, document.exists {
-                                        
-                                      
                                         self.performSegue(withIdentifier: "loggedInToOpenEvents", sender: self)
                                     } else {
-                                        
-                                      
                                         try! Auth.auth().signOut()
-                                       
                                         
                                         self.dbLogInButton.isEnabled = true
                                         self.stopButtonAnimation()
@@ -210,20 +177,13 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                             
                                             self.logInPageTitle.text = "Facility Login"
                                             self.logInPageTitleText = "Facility"
-                                            
-                                            
-                                            
                                         }))
                                         
                                         self.present(alert, animated: true)
-                                        
                                     }
                                 }
-   
                             }
-                            
                         } else {
-                            
                             UserDefaults.standard.set("facility", forKey: "logInType")
                             
                             if let uid = Auth.auth().currentUser?.uid {
@@ -232,15 +192,9 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                 
                                 facilityDocRef.getDocument { (document, error) in
                                     if let document = document, document.exists {
-                                        
-                                  
                                         self.performSegue(withIdentifier: "loggedInToOpenEvents", sender: self)
-                                        
                                     } else {
-                                        
-                                      
                                         try! Auth.auth().signOut()
-                                        
                                         
                                         self.dbLogInButton.isEnabled = true
                                         self.stopButtonAnimation()
@@ -257,7 +211,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                         }))
                                         
                                         self.present(alert, animated: true)
-                                        
                                     }
                                 }
                             }
@@ -278,15 +231,11 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
 //                let backItem = UIBarButtonItem()
 //                backItem.title = nextPageBack
 //                navigationItem.backBarButtonItem = backItem
-                
             }
         }
     }
     
-
-    
     func handleFirebaseErrors(error: NSError, onComplete: Completion?) {
-        
         if let errorCode = AuthErrorCode(rawValue: error.code) {
             switch (errorCode) {
             case .invalidEmail, .userNotFound:
@@ -300,7 +249,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
 }
 
 extension UITextField {
@@ -313,9 +261,6 @@ extension UITextField {
         self.layer.borderColor = UIColor.gray.cgColor
         self.attributedPlaceholder = NSAttributedString(string: self.placeholder!,
                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        
-        
         self.layer.masksToBounds = false
-
     }
 }

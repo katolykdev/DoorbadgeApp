@@ -13,11 +13,7 @@ import FirebaseUI
 import MessageUI
 import SDWebImage
 
-
 class EventInfoViewController: UIViewController, MFMailComposeViewControllerDelegate {
-   
-
-
     
     let storage = Storage.storage()
     
@@ -83,18 +79,15 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
     @IBOutlet var eventImageViewHeight: NSLayoutConstraint!
     
     @IBAction func mailButtonDidPress(_ sender: Any) {
-        
         let mailComposeViewController = configureMailController()
         if MFMailComposeViewController.canSendMail() {
             self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
             showMailError()
         }
-        
-        
     }
+    
     func configureMailController() -> MFMailComposeViewController {
-        
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         
@@ -103,7 +96,6 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
         mailComposerVC.setMessageBody("", isHTML: false)
         
         return mailComposerVC
-        
     }
     
     func sendData(title: String) {
@@ -112,13 +104,11 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
     }
     
     func showMailError() {
-        
         let sendMailErrorAlert = UIAlertController(title: "Could not send email", message: "Your device could not send email", preferredStyle: .alert)
         
         let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
         sendMailErrorAlert.addAction(dismiss)
         self.present(sendMailErrorAlert, animated: true, completion: nil)
-        
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -126,7 +116,6 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
     }
 
     func dialNumber(number : String) {
-        
         if let url = URL(string: "tel://\(number)"),
             UIApplication.shared.canOpenURL(url) {
             if #available(iOS 10, *) {
@@ -140,7 +129,6 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
     }
     
     @IBAction func markAsClosedButtonPressed(_ sender: Any) {
-        
         //IS OPEN OPEN OPEN OPEN OPEN OPEN OPEN OPEN
         
         if eventIsOpen == true {

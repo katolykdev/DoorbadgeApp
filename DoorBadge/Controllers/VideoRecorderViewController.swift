@@ -70,16 +70,10 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
         recordingCircle.layer.masksToBounds = true
         recordButton.setTitle("REC", for: .normal)
         recordButton.setImage(nil, for: .normal)
-
-        
-        
-        
     }
     
     /// Swap camera and reconfigures camera session with new input
     @objc fileprivate func swapCamera() {
-        
-        
         // Get current input
         guard let input = captureSession.inputs[0] as? AVCaptureDeviceInput else { return }
         
@@ -118,7 +112,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
             }
         } catch {
             print("Error setting device audio input: \(error)")
-            
         }
     }
     
@@ -139,7 +132,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     }
     
     @IBAction func videoRecordButton(_ sender: UIButton) {
-      
         sender.pulsate()
         
         if recordingLabelView.isHidden == true {
@@ -149,7 +141,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
             recordButton.setTitle("", for: .normal)
             recordButton.setImage(UIImage(imageLiteralResourceName: "stopIcon"), for: .normal)
             button1.title = ""
-            
         } else {
             recordingLabelView.isHidden = true
             timer.invalidate()
@@ -160,7 +151,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
         }
         
         startRecording()
- 
     }
     
     func setupPreview() {
@@ -172,43 +162,27 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     }
     
     func runTimer() {
-        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-        
     }
     
     @objc func updateTimer() {
-        
         if timerSeconds == 0 {
-            
            recordButton.sendActions(for: .touchUpInside)
-            
-            
         } else {
-        
             timerSeconds -= 1     //This will decrement(count down)the seconds.
-            
             recordingTimerLabel.text = "\(timerSeconds)s"
-            
         }
-            
-        
     }
-    
-    
     
     //MARK:- Setup Camera
     
     func setupSession() -> Bool {
-        
         captureSession.sessionPreset = AVCaptureSession.Preset.medium
-        
         
         // Setup Camera
         let camera = AVCaptureDevice.default(for: AVMediaType.video)!
         
         do {
-            
             let input = try AVCaptureDeviceInput(device: camera)
             
             if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
@@ -218,7 +192,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
             }
             
             if captureSession.canAddInput(input) {
-                
                 captureSession.addInput(input)
                 activeInput = input
             }
@@ -240,10 +213,8 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
             return false
         }
         
-        
         // Movie output
         if captureSession.canAddOutput(movieOutput) {
-            
             movieOutput.movieFragmentInterval = CMTime.invalid
             captureSession.addOutput(movieOutput)
         }
@@ -253,15 +224,11 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     
     func setupCaptureMode(_ mode: Int) {
         // Video Mode
-        
-        
     }
     
     //MARK:- Camera Session
     func startSession() {
-        
         if !captureSession.isRunning {
-            
             videoQueue().async {
                 self.captureSession.startRunning()
             }
@@ -270,7 +237,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     
     func stopSession() {
         if captureSession.isRunning {
-            
             videoQueue().async {
                 self.captureSession.stopRunning()
             }
@@ -299,9 +265,7 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     }
     
     @objc func startCapture() {
-        
         startRecording()
-        
     }
     
     //EDIT 1: I FORGOT THIS AT FIRST
@@ -318,17 +282,12 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         let vc = segue.destination as! VideoPlayback
-        
         vc.videoURL = sender as? URL
-        
     }
     
     func startRecording() {
-        
         if movieOutput.isRecording == false {
-            
             let connection = movieOutput.connection(with: AVMediaType.video)
             
             if (connection?.isVideoOrientationSupported)! {
@@ -350,22 +309,18 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
                 } catch {
                     print("Error setting configuration: \(error)")
                 }
-                
             }
             
             //EDIT2: And I forgot this
             outputURL = tempURL()
             movieOutput.startRecording(to: outputURL, recordingDelegate: self)
-            
         }
         else {
             stopRecording()
         }
-        
     }
     
     func stopRecording() {
-        
         if movieOutput.isRecording == true {
             movieOutput.stopRecording()
         }
@@ -378,31 +333,22 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         
         if (error != nil) {
-            
             print("Error recording movie: \(error!.localizedDescription)")
-            
         } else {
             
             let videoRecorded = outputURL! as URL
-
-            
             let filePath = videoRecorded.absoluteString
             var fileSize : UInt64
             
             do {
-     
                 let attr = try FileManager.default.attributesOfItem(atPath: filePath)
                 fileSize = attr[FileAttributeKey.size] as! UInt64
-                
-
             } catch {
                 print("Error: \(error)")
             }
             
             performSegue(withIdentifier: "showVideo", sender: videoRecorded)
-            
         }
-        
 }
     
     override func viewWillAppear(_ animated: Bool) {

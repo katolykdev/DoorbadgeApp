@@ -11,7 +11,6 @@ import Foundation
 import UIKit
 import Firebase
 
-
 class MemoryBookLoginViewController: UIViewController {
     
     var event: Event!
@@ -19,14 +18,10 @@ class MemoryBookLoginViewController: UIViewController {
     let db = Firestore.firestore()
     
     @IBOutlet weak var memoryBookTitleText: UILabel!
-    
     @IBOutlet weak var enterCodeField: UITextField!
-    
-    
     @IBOutlet weak var findMemoryBookButton: LoadingButton!
     
     @IBAction func findMemoryBookButtonDidTap(_ sender: Any) {
-
 //        performSegue(withIdentifier: "logInToMemoryBook", sender: UIButton.self)
         
         findMemoryBookButton.isEnabled = false
@@ -62,7 +57,6 @@ class MemoryBookLoginViewController: UIViewController {
                                 self.findMemoryBookButton.isEnabled = true
                                 self.succesfulLogIn()
                                 break checkForMemoryCode
-   
                             }
                         }
                     }
@@ -71,14 +65,8 @@ class MemoryBookLoginViewController: UIViewController {
         }
     
     func succesfulLogIn() {
-        
         performSegue(withIdentifier: "logInToMemoryBook", sender: AnyObject.self)
-     
-        
     }
-    
-    
-   
     
     override func viewDidLoad() {
         
@@ -95,8 +83,5 @@ class MemoryBookLoginViewController: UIViewController {
         
         MemoryBookEvent.comments = []
         self.navigationController?.navigationBar.tintColor = UIColor.black
-  
     }
-
 }
-

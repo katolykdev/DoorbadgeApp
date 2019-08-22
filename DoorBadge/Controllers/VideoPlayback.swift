@@ -106,14 +106,6 @@ class VideoPlayback: UIViewController {
 //    }
     
     @objc  func closeModal() {
-        
         self.dismiss(animated: true, completion: {})
-        
-        
-        
     }
-    
-    
-    
-    
 }

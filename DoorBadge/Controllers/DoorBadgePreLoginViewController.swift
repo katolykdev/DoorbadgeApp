@@ -10,23 +10,17 @@ import Foundation
 import UIKit
 import Firebase
 
-
 class DoorBadgePreLogInViewController: UIViewController {
     
-
     @IBOutlet weak var familyButton: UIButton!
     @IBOutlet weak var facilityButton: UIButton!
     @IBOutlet weak var memoryBookButton: UIButton!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var houseIcon: UIImageView!
-    
-    
     @IBOutlet weak var familyIcon: UIImageView!
-    
     @IBOutlet weak var memoryBookIcon: UIImageView!
     
-
     let generator1 = UIImpactFeedbackGenerator(style: .light)
 
     
@@ -36,10 +30,7 @@ class DoorBadgePreLogInViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline:.now() + 0.2, execute: {
             self.performSegue(withIdentifier: "showMemoryBookCode", sender: UIButton.self)
         })
-        
     }
-    
-
     
     @IBAction func familyButtonDidTap(_ sender: UIButton) {
         LoggedIn.accountType = "family"
@@ -48,10 +39,7 @@ class DoorBadgePreLogInViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline:.now() + 0.2, execute: {
         self.performSegue(withIdentifier: "toLogIn", sender: UIButton.self)
         })
-        
     }
-    
-
     
     @IBAction func facilityButtonDidTap(_ sender: UIButton) {
         LoggedIn.accountType = "facility"
@@ -60,7 +48,6 @@ class DoorBadgePreLogInViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline:.now() + 0.2, execute: {
         self.performSegue(withIdentifier: "toLogIn", sender: UIButton.self)
         })
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,22 +65,16 @@ class DoorBadgePreLogInViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
-        
-        
-        
         self.navigationController?.navigationBar.isHidden = false
         
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        
         //ROUND BUTTONS
         familyButton.layer.cornerRadius = 5
         facilityButton.layer.cornerRadius = 5
         memoryBookButton.layer.cornerRadius = 5
-        
         
         //COLOR HOUSE ICON
 //        let lightBlue = UIColor(red: 222.0/255.0, green: 227.0/255.0, blue: 236.0/255.0, alpha: 1.0)
@@ -111,40 +92,26 @@ class DoorBadgePreLogInViewController: UIViewController {
         let tintedMemImage = origMemImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         memoryBookIcon.image = tintedMemImage
         memoryBookIcon.tintColor = UIColor.black
-  
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
         if segue.identifier == "showMemoryBookCode" {
             
         }
             if let dbLogInVC = segue.destination as? DoorBadgeLogInViewController {
     
                 if segue.identifier == "toLogIn" {
-                    
                     if LoggedIn.accountType == "family" {
-                        
                         dbLogInVC.logInPageTitleText = "Family"
-                       
-                        
                     } else if LoggedIn.accountType == "facility" {
-                        
                         dbLogInVC.logInPageTitleText = "Facility"
-                       
-                        
                     }
-                    
                 }
-                
             }
         }
-            
 }
 
 extension UIButton {
-    
     override open func awakeFromNib() {
         super.awakeFromNib()
         self.addTarget(self, action: #selector(methodTobeCalledEveryWhere), for: .touchUpInside)
@@ -154,5 +121,4 @@ extension UIButton {
           let generator1 = UIImpactFeedbackGenerator(style: .light)
         generator1.impactOccurred()
     }
-    
 }

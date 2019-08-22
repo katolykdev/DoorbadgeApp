@@ -20,8 +20,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
     var buttonRow = 0
     @IBOutlet weak var memoryBookTableView: UITableView!
     func getMemories(){
-        
-
         let eventRef = Firestore.firestore().collection("events").document("\(event.eventId)")
             
         let commentsRef = eventRef.collection("comments")
@@ -30,9 +28,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                
-                
-                
                 for document in querySnapshot!.documents {
                     
                     let comment = Memory(dictionary: document.data())
@@ -45,11 +40,9 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                     })
                  
                     self.memoryBookTableView.reloadData()
-
                 }
             }
         }
-    
     }
     
     let blackBackground = UIView()
@@ -59,7 +52,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
     var player = AVPlayer()
     var playerLayer = AVPlayerLayer()
     let topView = UIView()
-    
     
     func animateImageView(statusImageView: UIButton, media: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
@@ -81,7 +73,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 self.zoomImageView.isUserInteractionEnabled = true
                 self.zoomImageView.contentMode = .scaleAspectFit
                 
-                
                 if MemoryBookEvent.comments[self.buttonRow].image != "" {
                     if let fullImageURL = MemoryBookEvent.comments[self.buttonRow].image?.replacingOccurrences(of: "?", with: "-full?") {
                         self.zoomImageView.sd_setImage(with: URL(string: fullImageURL))
@@ -89,9 +80,7 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 }
                 
                 self.view.addSubview(self.zoomImageView)
-                
-                
-                self.zoomImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(self.zoomOut)))
+                 self.zoomImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(self.zoomOut)))
                 
                 let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.zoomOut))
                 self.zoomImageView.addGestureRecognizer(tapRecognizer)
@@ -107,11 +96,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                     self.blackBackground.alpha = 1
                 }
             } else {
-             
-
-                
-                
-                
                 self.blackBackground.frame = startingFrame
                 self.blackBackground.backgroundColor = UIColor.black
                 self.blackBackground.alpha = 0
@@ -133,7 +117,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 self.view.addSubview(self.topView)
 
                 UIView.animate(withDuration: 0.25) {
-
                     let height = (self.view.frame.width / startingFrame.width) * startingFrame.height
 
                     let y = self.view.frame.height / 2 - height / 2
@@ -146,18 +129,13 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                     self.view.bringSubviewToFront(self.topView)
                     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.closeVideo))
                     self.topView.addGestureRecognizer(tapGesture)
-                    
                 }
-
-                
             }
-            
         }
         })
     }
     
     @objc func zoomOut() {
-       
         if let startingFrame = statusImageView!.superview?.convert(statusImageView!.frame, to: nil) {
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 self.zoomImageView.frame = startingFrame
@@ -167,15 +145,11 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                     self.blackBackground.removeFromSuperview()
                     
                     self.statusImageView?.alpha = 1
-                    
-                    
-                    
             })
         }
     }
     
     @objc func closeVideo() {
-        
         if let startingFrame = statusImageView!.superview?.convert(statusImageView!.frame, to: nil) {
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 self.blackBackground.frame = startingFrame
@@ -187,21 +161,13 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 self.blackBackground.removeFromSuperview()
                 self.topView.removeFromSuperview()
                 self.player.replaceCurrentItem(with: nil)
-
-
-                
-                
             })
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MemoryBookEvent.comments.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -222,13 +188,10 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
             formatter.dateStyle = .long
             formatter.timeStyle = .medium
             
-
             let myString = formatter.string(from: date as Date)
             
             cell.memoryDate.text = myString
-           
         }
-        
         
         cell.memoryName.text = memory.name
         cell.memoryText.text = memory.memory
@@ -252,17 +215,12 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 
                 cell.yourobj = {
                     
-             
-                    
                 }
             } else {
-                
                 cell.memoryPhotoButton.isHidden = true
                 cell.memoryPhotoLabel.isHidden = true
                 cell.stackview.removeArrangedSubview(cell.photoStackView)
                 cell.stackview.addArrangedSubview(cell.photoStackView)
-                
-
             }
         }
         if let videoDownloadURL = memory.videoThumbnail {
@@ -275,30 +233,20 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                     UIControl.State.normal, placeholderImage: UIImage(named:
                         "default_profile"), options: SDWebImageOptions(rawValue: 0)) { (image,
                             error, cache, url) in
-
                 }
                 
-
                 cell.yourobj = {
-                    
-                 
                     
                 }
             } else {
                 cell.memoryVideoButton.isHidden = true
                 cell.memoryVideoLabel.isHidden = true
-                
-                
             }
         }
 
-                
         if (memory.image == "") && (memory.videoThumbnail == "")   {
-                
                 cell.memoryBookStackViewHeight.constant = 0
-                
         }
-
 
         return cell
     }
@@ -309,14 +257,12 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
     
     @objc func buttonClicked(sender:UIButton) {
         buttonRow = sender.tag
-      
     }
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 240
 //    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as? memoryBookHeaderCell else {
             fatalError("Not a Header Cell")
         }
@@ -326,25 +272,17 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
             cell.memoryBookName.text = "\(event.eventFirstName) \(event.eventLastName)"
             cell.memoryBookDates.text = "\(event.dateOfBirth) - \(event.dateOfDeath)"
 
-
             let imageDownloadURL = event.image
 
             if imageDownloadURL != "" {
-
                 cell.memoryBookImageView.sd_setImage(with: URL(string: event.image))
-                
-            
-
             } else {
-
                 cell.memoryBookImageView.image = nil
-
             }
         }
 
         // This is where you would change section header content
         return cell
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -358,7 +296,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func viewDidLoad() {
-        
         MemoryBookEvent.comments = []
 
         memoryBookTableView.register(UINib(nibName: "memoryBookHeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
@@ -374,9 +311,7 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
         
         event = MemoryBookEvent.activeMemoryBook
         getMemories()
-        
     }
-    
     
     @objc func popMemoryModal(sender: UIButton!)  {
         defaults.set("popped", forKey: "didPopModal")
@@ -404,14 +339,7 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-
-    
-   
     override func viewDidAppear(_ animated: Bool) {
-        
-        
-        
-       
         self.memoryBookTableView.reloadData()
         
 //        if defaults.string(forKey: "didPopModal") == "popped" {
@@ -442,14 +370,10 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
 //            memoryBookTableView.scrollToTop()
 //        }
     }
-
 }
 
 extension UITableView {
-    
-
     func scrollToTop() {
-        
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: 0, section: 0)
             self.scrollToRow(at: indexPath, at: .top, animated: false)

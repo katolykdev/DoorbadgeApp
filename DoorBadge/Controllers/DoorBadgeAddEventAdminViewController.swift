@@ -65,7 +65,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         "familyModeOfContact": "",
         
         "isOpen": true
-        
     ]
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -237,9 +236,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
             var ref: DocumentReference? = nil
             
             if isEditing == true {
-              
-
-                
                 db.collection("events").document(existingEvent!.eventId).setData([
  
                     "date": eventDateTextField.text ?? "",
@@ -264,10 +260,7 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                     } else {
                       
                     }
-                    
                 }
-                
-                
                 
                 //If new image selected on Edit
                 if self.uploadedImageView.image != UIImage(named: "photoIcon") {

@@ -67,9 +67,7 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
     var giftThankYouSent: Bool = false
     var giftGiftID = ""
     
-    
     var giftDictionary: [String: Any] = [
-    
         "title": "",
         "description": "",
         "giver":"",
@@ -79,24 +77,15 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         "facilityId": "",
         "thankYouSent": false,
         "giftId": ""
-
     ]
     
     @IBAction func addEventModalCloseDidTap() {
-        
         self.dismiss(animated: true, completion: {})
-        
     }
     
-    
     @IBOutlet var imageButton1: UIButton!
-    
     @IBOutlet var imageButton2: UIButton!
-    
-    
     @IBOutlet var imageButton3: UIButton!
-    
-    
     
    func takePhoto(_ sender: UIImageView) {
 
@@ -110,18 +99,13 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                
                 imagePicker.allowsEditing = true
                 self.present(imagePicker, animated: true, completion: nil)
-    
-        
-    
 //            }
 //
 //        } else {
 //            // alert no more pictures allowed
 //
 //        }
-
     }
-    
     
     func scaleImage(image:UIImage, view:UIImageView, customWidth: CGFloat?) -> UIImage {
         
@@ -141,12 +125,10 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             } else {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             }
-            
         } else {
             
             let viewWidth:CGFloat = view.bounds.width * 3
@@ -162,7 +144,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             }
-            
         }
         
         UIGraphicsBeginImageContext(CGSize(width:newWidth, height:newHeight))
@@ -170,15 +151,11 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            
-
             switch imageButtonTapped {
             case 1:
                 self.imageButton1.setImage(pickedImage, for: .normal)
@@ -189,13 +166,8 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
             default:
                 break
             }
-
-            
-
         }
-        
         picker.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func uploadImageDidTap(_ sender: Any) {
@@ -209,10 +181,7 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         {
             //After is complete
         }
-        
     }
-    
-
     
     override func viewDidLoad() {
 //        let eventRef = db.collection("events")
@@ -284,18 +253,11 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 }
                 self.imageButton3!.sd_setImage(with: URL(string: giftSecondaryImages[1]), for: .normal) { (image, err, cache, url) in
                 }
-                
             }
-            
         }
-
-    
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DoorBadgeAddGiftViewController.viewTapped(gestureRecognizer:)))
         
         view.addGestureRecognizer(tapGesture)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -336,8 +298,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-       
             SDImageCache.shared.removeImageFromDisk(forKey: self.giftGiftID)
             SDImageCache.shared.removeImageFromMemory(forKey: self.giftGiftID)
       
@@ -346,13 +306,8 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
 
             SDImageCache.shared.removeImageFromDisk(forKey: "\(self.giftGiftID)-3")
             SDImageCache.shared.removeImageFromMemory(forKey: "\(self.giftGiftID)-3")
-
-    
-
-        
     }
     @IBAction func imageOneDidTap(_ sender: Any) {
-        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -360,13 +315,9 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
         imageButtonTapped = 1
-
-        
     }
     
     @IBAction func imageTwoDidTap(_ sender: Any) {
-        
-        
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -374,8 +325,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
         imageButtonTapped = 2
-        
-        
     }
     
     @IBAction func imageThreeDidTap(_ sender: Any) {
@@ -386,17 +335,10 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
         imageButtonTapped = 3
-        
-        
-        
     }
-    
-    
-    
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
-        
     }
 
     @IBAction func submitGift(_ sender: UIButton) {
@@ -416,8 +358,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
             
             
             if editingGift == true {
-                
-
               db.collection("events").document("\(giftEventId)").collection("gifts").document("\(giftGiftID)").setData([
                     
                     "title": giftTitleTextField.text ?? "",
@@ -805,9 +745,5 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 }
             }
         }
-                
-
-                
-            
     }
 }

@@ -92,7 +92,7 @@
 		F3707B522270A6F4000A010B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3707B5A227155D2000A010B /* DoorBadgeLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeLogInViewController.swift; sourceTree = "<group>"; };
 		F3707B5C227159B1000A010B /* DoorBadgePreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgePreLoginViewController.swift; sourceTree = "<group>"; };
-		F37504F622A2B467005B5193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F37504F622A2B467005B5193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F385F69B22E977A300FAA1B7 /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FullImageViewController.swift; path = DoorBadge/Controllers/FullImageViewController.swift; sourceTree = SOURCE_ROOT; };
 		F398D6D922A75DDD00E3E2C7 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		F39FCC4A22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorBadgeOpenEventsViewController.swift; sourceTree = "<group>"; };

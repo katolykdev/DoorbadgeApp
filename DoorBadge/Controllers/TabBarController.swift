@@ -11,7 +11,6 @@ import Firebase
 
 class TabBarController: UITabBarController {
     
-    
     override func viewDidLoad() {
         let selectedColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
@@ -20,23 +19,8 @@ class TabBarController: UITabBarController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
-

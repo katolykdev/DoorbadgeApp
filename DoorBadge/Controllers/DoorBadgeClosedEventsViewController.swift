@@ -14,8 +14,6 @@ import SDWebImage
 
 class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
-    
-    
     var event: Event!
     var events: [String] = []
     var gifts: [Gift] = []
@@ -66,8 +64,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
             
         }
         
-        
-        
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -88,15 +84,10 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
             print("gettingFam")
             
             getFamily()
-            
         } else {
-            
             getFacility()
             print("gettingFacility")
-            
         }
-        
-        
     }
     
     func changeDateStringToYearFirstNumber(date: String) -> Int {
@@ -112,11 +103,8 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
             let newDateNumberString = "\(year)\(monthAndDate)"
             
             let finalNumber = Int(newDateNumberString)
-            
-            
             return finalNumber!
         }
-        
     }
     
     func defaultSort() {
@@ -130,9 +118,7 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                     return $0.eventLastName < $1.eventLastName
                 }
             })
-            
         } else {
-            
             FacilityEvents.pastEvents.sort(by: {
                 if $0.date != $1.date {
                     return changeDateStringToYearFirstNumber(date: $0.date) < changeDateStringToYearFirstNumber(date: $1.date)
@@ -140,18 +126,10 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                     return $0.eventLastName < $1.eventLastName
                 }
             })
-            
-            
         }
-        
-        
-        
-        
     }
     
-    
     func getFacility(){
-        
         let user = Auth.auth().currentUser
         
         if let user = user {
@@ -171,23 +149,13 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                     })
                     
                 }) {
-                    
-                    
                     FacilityEvents.loggedInFacility = facility
                     
-                    
                     if let currentFacility = FacilityEvents.loggedInFacility {
-                        
-                        
                         let events = currentFacility.events
                         
-                        
                         for event in events {
-                            
-                            
-                            
                             let eventRef = Firestore.firestore().collection("events").document(event)
-                            
                             
                             eventRef.getDocument { (document, error) in
                                 if let event = document.flatMap({
@@ -198,9 +166,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                                     
                                     if event.isOpen {
                                         
-                                    
-                                        
-                                        
                                     } else {
                                         
                                         FacilityEvents.pastEvents.append(event)
@@ -208,8 +173,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                                         self.defaultSort()
                                         
                                     }
-                                    
-                                    
                                 } else {
                                     print("that: document does not exist")
                                 }
@@ -217,14 +180,10 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                         }
                     }
                 } else {
-                    
                     print("this: document does not exist")
-                    
                 }
-                
             }
         }
-        
     }
     
     func getFamily(){
@@ -246,18 +205,11 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                         return Family(dictionary: data)
                         
                     })
-                    
                 }) {
-                    
-                    
                     FamilyEvents.loggedInFamily = family
                     
-                    
                     if let currentFamily = FamilyEvents.loggedInFamily {
-                        
-                        
                         let events = currentFamily.events
-                        
                         
                         for event in events {
                             
@@ -271,15 +223,10 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                                 }) {
                                     if event.isOpen {
                                         
-                                        
-                                        
-                                        
                                     } else {
-                                        
                                         FamilyEvents.pastEvents.append(event)
                                         self.closedEventsTableView.reloadData()
                                         self.defaultSort()
-                                        
                                     }
                                 } else {
                                     print("that: document does not exist")
@@ -288,23 +235,14 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                         }
                     }
                 } else {
-                    
                     print("this: document does not exist")
-                    
                 }
-                
             }
         }
-        
     }
     
-    
     @IBAction func addEventButtonDidTap(_ sender: Any) {
-        
         performSegue(withIdentifier: "toAddEventAdmin", sender: Any?.self)
-        
-        
-        
     }
     
     func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
@@ -313,10 +251,7 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
         }
     }
     
-    
     @IBAction func sortButtonDidTap(_ sender: Any) {
-        
-        
         if sortedBy == "date" {
             
             leftSortButton.title = "Sort by Date"
@@ -333,9 +268,7 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                         return $0.eventCode < $1.eventCode
                     }
                 })
-                
             } else {
-                
                 FacilityEvents.pastEvents.sort(by: {
                     if $0.eventLastName != $1.eventLastName {
                         return $0.eventLastName < $1.eventLastName
@@ -348,18 +281,14 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                 
             }
             if closedEventsTableView.isAtTop {
-                
                 self.closedEventsTableView.reloadSections([0], with: UITableView.RowAnimation.right)
-                
             } else {
                 self.closedEventsTableView.setContentOffset(.zero, animated: true)
                 delayWithSeconds(0.3, completion: {
                     self.closedEventsTableView.reloadSections([0], with: UITableView.RowAnimation.right)
                 })
             }
-            
         } else {
-            
             leftSortButton.title = "Sort by Name"
             sortedBy = "date"
             
@@ -400,11 +329,8 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                     self.closedEventsTableView.reloadSections([0], with: UITableView.RowAnimation.right)
                 })
             }
-            
         }
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -413,100 +339,58 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
         defaultSort()
         EventGifts.gifts = []
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if logInType == "family" {
-            
             return FamilyEvents.pastEvents.count
-            
         } else {
-            
             return FacilityEvents.pastEvents.count
-            
         }
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        
         return 140
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        
-        
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as? EventCellTableViewCell else {
             fatalError("Not a Teaser Cell")
         }
         
         if logInType == "family" {
-            
             event = FamilyEvents.pastEvents[indexPath.row]
-            
-            
         } else {
-            
             event = FacilityEvents.pastEvents[indexPath.row]
-            
-            
         }
         
-        
         cell.populate(event: event)
-        
-        
-        
         cell.eventNameLabel.addCharacterSpacing(kernValue: 1.05)
-        
         
         let imageDownloadURL = event.image
         
         if imageDownloadURL != "" {
-            
-            
             cell.eventImageView.sd_setImage(with: URL(string: event.image))
-            
         } else {
-            
             cell.eventImageView.image = nil
-            
         }
         
         return cell
-        
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if logInType == "family" {
-            
             event = FamilyEvents.pastEvents[indexPath.row]
-            
         } else {
-            
             event = FacilityEvents.pastEvents[indexPath.row]
-            
         }
 
         performSegue(withIdentifier: "showEventFromClosedEvents", sender: self)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -528,11 +412,7 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                 let backItem = UIBarButtonItem()
                 backItem.title = nextPageBack
                 navigationItem.backBarButtonItem = backItem
-                
-                
             }
         }
     }
 }
-
-

@@ -61,11 +61,9 @@ class DoorBadgeSettingsViewController: UIViewController  {
         try! Auth.auth().signOut()
         
         performSegue(withIdentifier: "didLogOutToInitial", sender: Any?.self)
-        
     }
 
     override func viewDidLoad() {
-        
         if defaults.string(forKey: "logInType") == "family" {
             logInType = "family"
         } else {
@@ -73,7 +71,6 @@ class DoorBadgeSettingsViewController: UIViewController  {
         }
         
         if logInType == "facility" {
-            
             currentFacility = FacilityEvents.loggedInFacility
             
             facilityName.text = currentFacility.name
@@ -83,10 +80,7 @@ class DoorBadgeSettingsViewController: UIViewController  {
             facilityFirstName.text = currentFacility.firstName
             facilityLastName.text = currentFacility.lastName
             facilityWebsite.text = currentFacility.website
-            
-            
         } else {
-            
             facilityNameLabel.text = "Logged in as:"
             facilityName.text = Auth.auth().currentUser?.email
             
@@ -103,9 +97,6 @@ class DoorBadgeSettingsViewController: UIViewController  {
             firstNameLabel.text = ""
             lastNameLabel.text = ""
             websiteLabel.text = ""
-            
         }
-    
     }
-
 }

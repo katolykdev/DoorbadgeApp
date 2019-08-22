@@ -24,18 +24,12 @@ class WebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         currentFacility = appDelegate.currentFacility
-        
-        
     }
     
-
     @IBAction func closeWebModal(_ sender: Any) {
-        
         self.dismiss(animated: true, completion: {})
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -73,10 +67,6 @@ class WebViewController: UIViewController {
                     webView.load(urlRequest)
                 }
             }
-            
         }
-
     }
-
 }
-
