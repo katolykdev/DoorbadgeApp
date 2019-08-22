@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import UIKit
-
 
 struct FacilityEvents {
     
@@ -20,8 +18,6 @@ struct FacilityEvents {
     {
         if !FacilityEvents.currentEvents.contains(where: {$0.eventId == event.eventId}) {
             FacilityEvents.currentEvents.append(event)
-            
         }
     }
-   
 }

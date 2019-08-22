@@ -19,7 +19,6 @@ class GiftAsFamilyTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        
         self.thankYouLabel.text = ""
         self.giftTitleLabel.text = ""
         self.giftGiverLabel.text = ""
@@ -28,47 +27,21 @@ class GiftAsFamilyTableViewCell: UITableViewCell {
     }
     
     @IBOutlet weak var containerView: UIView!
-    
     @IBOutlet weak var sentIcon: UIImageView!
-    
     @IBOutlet weak var giftImageView: UIImageView!
-    
-    
     @IBOutlet weak var thankYouLabel: UILabel!
-    
-    
     @IBOutlet weak var giftGiverLabel: UILabel!
-    
-    
     @IBOutlet weak var giftTitleLabel: UILabel!
     
-    
     func populate(gift: Gift) {
-        
-        
         giftTitleLabel.text = "\(gift.title)"
         
         if gift.giver != "" {
-            
             giftGiverLabel.text = "From:  \(gift.giver)"
-            
         } else {
-            
             giftGiverLabel.isHidden = true
-            
-            
         }
         //        eventDateLabel.text = event.getReleaseDateFrom(integer: event.date)
         thankYouLabel.text = ""
-        
-
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

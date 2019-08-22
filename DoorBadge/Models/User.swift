@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+
 class User {
     
     let uid: String
@@ -18,9 +18,6 @@ class User {
     var zip: String
     var phoneNumber: String
     var events: [String]
-
-    
-    
     
     init(uid: String, email: String, firstName: String, lastName: String, address: String, zip: String, phoneNumber: String, events: [String]) {
         
@@ -32,8 +29,6 @@ class User {
         self.zip = zip
         self.phoneNumber = phoneNumber
         self.events = events
-        
-        
     }
     
 //    func save(completion: @escaping (Error?) -> Void) {
@@ -46,7 +41,6 @@ class User {
 //    }
     
     func toDictionary() -> [String : Any] {
-        
         return [
             "uid" : uid,
             "email": email,
@@ -57,7 +51,6 @@ class User {
             "phoneNumber" : phoneNumber,
             "events" : events
         ]
-        
     }
     
     //    func saveToProjectsWith(projects: [String]) -> Void {
@@ -66,6 +59,4 @@ class User {
     //        ref.setValue([String:Bool])
     //
     //    }
-    
 }
-

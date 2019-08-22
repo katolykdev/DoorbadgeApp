@@ -20,4 +20,3 @@ import FirebaseFirestore
 protocol DocumentSerializable {
     init?(dictionary: [String: Any])
 }
-

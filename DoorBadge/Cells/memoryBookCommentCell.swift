@@ -12,7 +12,6 @@ class memoryBookCommentCell: UITableViewCell {
 
     var yourobj : (() -> Void)? = nil
     
-    
     var memoryBookController: MemoryBookViewController?
     
     @IBOutlet weak var memoryPhotoButton: UIButton!
@@ -40,7 +39,6 @@ class memoryBookCommentCell: UITableViewCell {
         memoryPhotoButton.layer.borderColor = grayColor.cgColor
         memoryVideoButton.layer.borderWidth = 3
         memoryVideoButton.layer.borderColor = grayColor.cgColor
-
     }
     @IBOutlet var photoStackView: UIView!
     
@@ -59,12 +57,6 @@ class memoryBookCommentCell: UITableViewCell {
         stackview.insertArrangedSubview(photoStackView, at: 0)
         stackview.insertArrangedSubview(videoStackView, at: 1)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 //    func animate() {
 //        
@@ -72,9 +64,7 @@ class memoryBookCommentCell: UITableViewCell {
 //   
 //    }
     
-    
     @IBAction func clickedPhotoButtonForCell(_ sender: UIButton) {
-        
 //        if let btnAction = self.yourobj {
 //
 //            btnAction()
@@ -82,16 +72,10 @@ class memoryBookCommentCell: UITableViewCell {
 //        }
         sender.pulsate()
         memoryBookController?.animateImageView(statusImageView: memoryPhotoButton, media: "photo")
-    
     }
     
     @IBAction func clickedVideoButtonForCell(_ sender: UIButton) {
         sender.pulsate()
         memoryBookController?.animateImageView(statusImageView: memoryVideoButton, media: "video")
-        
-   
-        
-        
     }
-    
 }

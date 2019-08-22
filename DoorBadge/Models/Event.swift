@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import FirebaseFirestore
 
 struct Event {
@@ -38,7 +37,6 @@ struct Event {
 
     var dictionary: [String: Any] {
         return [
-            
         "age": age,
         "date": date,
         "dateOfBirth": dateOfBirth,
@@ -62,16 +60,9 @@ struct Event {
         "title": title,
         "type": type,
         "isOpen": isOpen
-            
         ]
-        
     }
-    
-
-    
-
 }
-
 
 extension Event: DocumentSerializable {
     
@@ -100,16 +91,11 @@ extension Event: DocumentSerializable {
             let title = dictionary["title"] as? String,
             let type = dictionary["type"] as? String,
             let isOpen = dictionary["isOpen"] as? Bool
-
-            
-
             else {
                 return nil
-                
         }
         
         self.init(
-            
             age: age,
             date: date,
             dateOfBirth: dateOfBirth,
@@ -133,8 +119,6 @@ extension Event: DocumentSerializable {
             title: title,
             type: type,
             isOpen: isOpen
-
-            
         )
     }
 }

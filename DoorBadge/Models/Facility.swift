@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import FirebaseFirestore
 
 struct Facility {
@@ -26,7 +25,6 @@ struct Facility {
     var zipCode: String
     
     var dictionary: [String : Any] {
-        
         return [
             "uid" : uid,
             "name": name,
@@ -41,9 +39,7 @@ struct Facility {
             "state": state,
             "zipCode": zipCode
         ]
-        
     }
-
 }
 
 extension Facility: DocumentSerializable {
@@ -62,14 +58,11 @@ extension Facility: DocumentSerializable {
             let city = dictionary["city"] as? String,
             let state = dictionary["state"] as? String,
             let zipCode = dictionary["zipCode"] as? String
-            
             else {
                 return nil
-                
         }
         
         self.init(
-            
             uid: uid,
             name: name,
             email: email,
@@ -82,7 +75,6 @@ extension Facility: DocumentSerializable {
             city: city,
             state: state,
             zipCode: zipCode
-            
         )
     }
 }
