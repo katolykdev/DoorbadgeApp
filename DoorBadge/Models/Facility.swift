@@ -46,35 +46,26 @@ extension Facility: DocumentSerializable {
     
     init?(dictionary: [String: Any]) {
         
-        guard let uid = dictionary["uid"] as? String,
-            let name = dictionary["name"] as? String,
-            let email = dictionary["email"] as? String,
-            let firstName = dictionary["firstName"] as? String,
-            let lastName = dictionary["lastName"] as? String,
-            let address = dictionary["address"] as? String,
-            let phone = dictionary["phone"] as? String,
-            let events = dictionary["events"] as? [String],
-            let website = dictionary["website"] as? String,
-            let city = dictionary["city"] as? String,
-            let state = dictionary["state"] as? String,
-            let zipCode = dictionary["zipCode"] as? String
+        guard let uid = dictionary[stringFor: "uid"],
+            let email = dictionary[stringFor: "email"],
+            let events = dictionary["events"] as? [String]
             else {
                 return nil
         }
         
         self.init(
             uid: uid,
-            name: name,
+            name: dictionary[stringFor: "name"] ?? "",
             email: email,
-            firstName: firstName,
-            lastName: lastName,
-            address: address,
-            phone: phone,
+            firstName: dictionary[stringFor: "firstName"] ?? "",
+            lastName: dictionary[stringFor: "lastName"] ?? "",
+            address: dictionary[stringFor: "address"] ?? "",
+            phone: dictionary[stringFor: "phone"] ?? "",
             events: events,
-            website: website,
-            city: city,
-            state: state,
-            zipCode: zipCode
+            website: dictionary[stringFor: "website"] ?? "",
+            city: dictionary[stringFor: "city"] ?? "",
+            state: dictionary[stringFor: "state"] ?? "",
+            zipCode: dictionary[stringFor: "zipCode"] ?? ""
         )
     }
 }

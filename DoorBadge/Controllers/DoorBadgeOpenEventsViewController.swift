@@ -14,8 +14,6 @@ import SDWebImage
 
 class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
-    
-    
     var event: Event!
     var events: [String] = []
     var gifts: [Gift] = []
@@ -48,7 +46,6 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
     @IBOutlet weak var openEventsLabel: UILabel!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         if defaults.string(forKey: "logInType") == "family" {
@@ -57,19 +54,12 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             logInType = "facility"
         }
         
-        let user = Auth.auth().currentUser
-        
-        if let user = user {
-            let uid = user.uid
-        }
-        
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.black
         
         openEventsLabel.text = "OPEN EVENTS"
         openEventsLabel.addCharacterSpacing(kernValue: 1.15)
-
         
         openEventsTableView.register(UINib(nibName: "EventCellTableViewCell", bundle: nil), forCellReuseIdentifier: "eventCell")
         
@@ -88,7 +78,6 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
     }
     
     func changeDateStringToYearFirstNumber(date: String) -> Int {
-        
         if date == "" {
             return 99999999
         } else {
@@ -129,7 +118,6 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
     }
     
     func getFacility(){
-        
         let user = Auth.auth().currentUser
         
         if let user = user {
@@ -141,11 +129,8 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             facilityRef.getDocument { (document, error) in
             
                 if let facility = document.flatMap({
-                
                     $0.data().flatMap({ (data) in
-                    
                         return Facility(dictionary: data)
-                        
                     })
                 }) {
                     FacilityEvents.loggedInFacility = facility

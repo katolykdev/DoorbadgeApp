@@ -26,8 +26,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     
     var eventId = ""
     
-    var imagesArray: [String] = []
-    
     var giftToPass: Gift!
     
     var gifts: [[String: Any]] = []
@@ -87,8 +85,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
             button1.title = "Add Gift"
             self.navigationItem.rightBarButtonItem  = button1
         }
-       
-        getGifts()
     }
     
     func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
@@ -151,6 +147,7 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
         } else {
             
         }
+        self.giftsTableView.reloadData()
     }
     
     @objc func thanksSort() {
@@ -158,31 +155,26 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        imagesArray = []
+        super.viewDidAppear(animated)
         giftsTableView.reloadData()
     }
     
-    func getGifts(){
-            let eventRef = Firestore.firestore().collection("events").document("\(event.eventId)").collection("gifts")
+    func getGifts() {
+        let eventRef = Firestore.firestore().collection("events").document("\(event.eventId)").collection("gifts")
         
-            eventRef.getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        if let gift = Gift(dictionary: document.data()) {
-                            EventGifts.gifts.append(gift)
-                        }
-
-                        self.defaultSort()
-                        self.giftsTableView.reloadData()
-                    }
-                }
+        eventRef.getDocuments() { [weak self] (snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
             }
+            EventGifts.gifts = snapshot?.documents.compactMap { Gift(dictionary: $0.data()) } ?? []
+            self?.defaultSort()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        getGifts()
             if logInType == "family" {
                 if defaults.string(forKey: "thanksFirst") == "true" {
                     EventGifts.gifts.sort {
@@ -270,25 +262,14 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
                 giftVC.giftGiver = "From: \(giftToPass.giver)"
                 giftVC.imageArray = []
                 
-                imagesArray = []
-                imagesArray.append(giftToPass.mainImage)
-
-                for image in giftToPass.secondaryImages {
-                        imagesArray.append(image)
-                }
-                for image in imagesArray {
-                    print(image)
-                }
-                    
-                giftVC.imagesArray = imagesArray
+                giftVC.imagesArray = [giftToPass.mainImage] + giftToPass.secondaryImages
                 giftVC.thankYouWasSent = giftToPass.thankYouSent
                 giftVC.giftId = giftToPass.giftId
                 giftVC.eventId = eventId
                 giftVC.indexPathRowNumber = indexToPass
                 
-                let nextPageBack = "Event"
                 let backItem = UIBarButtonItem()
-                backItem.title = nextPageBack
+                backItem.title = "Event"
                 navigationItem.backBarButtonItem = backItem
             }
         }
@@ -321,7 +302,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
             return 0
         }
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if logInType == "facility" {
