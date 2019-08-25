@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import Foundation
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseFirestore
-
 
 class DoorBadgeSettingsViewController: UIViewController  {
     

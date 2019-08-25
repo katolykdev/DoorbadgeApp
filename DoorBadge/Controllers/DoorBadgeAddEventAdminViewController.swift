@@ -8,7 +8,6 @@
 
 
 import UIKit
-import Foundation
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
@@ -17,7 +16,6 @@ import SDWebImage
 
 
 class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-
     
     var editingEvent: Bool = false
     var event: Event!

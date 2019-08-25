@@ -6,10 +6,8 @@
 //  Copyright © 2019 Robert Cadorette. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import WebKit
-
 
 class WebViewController: UIViewController {
     

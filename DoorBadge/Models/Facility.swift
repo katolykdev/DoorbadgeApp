@@ -6,7 +6,6 @@
 //  Copyright © 2019 Robert Cadorette. All rights reserved.
 //
 
-import Foundation
 import FirebaseFirestore
 
 struct Facility {
@@ -47,8 +46,7 @@ extension Facility: DocumentSerializable {
     init?(dictionary: [String: Any]) {
         
         guard let uid = dictionary[stringFor: "uid"],
-            let email = dictionary[stringFor: "email"],
-            let events = dictionary["events"] as? [String]
+            let email = dictionary[stringFor: "email"]
             else {
                 return nil
         }
@@ -61,7 +59,7 @@ extension Facility: DocumentSerializable {
             lastName: dictionary[stringFor: "lastName"] ?? "",
             address: dictionary[stringFor: "address"] ?? "",
             phone: dictionary[stringFor: "phone"] ?? "",
-            events: events,
+            events: dictionary["events"] as? [String] ?? [],
             website: dictionary[stringFor: "website"] ?? "",
             city: dictionary[stringFor: "city"] ?? "",
             state: dictionary[stringFor: "state"] ?? "",
