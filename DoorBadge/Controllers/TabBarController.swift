@@ -7,19 +7,19 @@
 //
 
 import Firebase
+import MBProgressHUD
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, SpinnerViewController {
     
     override func viewDidLoad() {
-        let selectedColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor], for: .selected)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewDidLoad()
+        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+        navigationController?.navigationBar.isHidden = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        showHUD()
+        DataManager.getFacility {
+            self.hideHUD()
+        }
     }
 }

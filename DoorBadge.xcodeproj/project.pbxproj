@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7AC45C472310794F0055EE8B /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C462310794F0055EE8B /* Dictionary.swift */; };
+		7AC45C4A2312FCC00055EE8B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C492312FCC00055EE8B /* DataManager.swift */; };
+		7AC45C4C2312FFDB0055EE8B /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C4B2312FFDB0055EE8B /* SpinnerViewController.swift */; };
 		C5450E56CEB870421CA882A2 /* Pods_DoorBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675CF636B73F8CAC96337E34 /* Pods_DoorBadge.framework */; };
 		F3117ABA22F0F8AE00E933F1 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */; };
 		F3117ABC22F1146900E933F1 /* LatestVideoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3117ABB22F1146900E933F1 /* LatestVideoURL.swift */; };
@@ -67,6 +69,8 @@
 /* Begin PBXFileReference section */
 		675CF636B73F8CAC96337E34 /* Pods_DoorBadge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoorBadge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AC45C462310794F0055EE8B /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		7AC45C492312FCC00055EE8B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		7AC45C4B2312FFDB0055EE8B /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		BC75CF02D4859742BB984DDE /* Pods-DoorBadge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorBadge.release.xcconfig"; path = "Target Support Files/Pods-DoorBadge/Pods-DoorBadge.release.xcconfig"; sourceTree = "<group>"; };
 		DDEEB1FC10907B2450D2B82B /* Pods-DoorBadge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorBadge.debug.xcconfig"; path = "Target Support Files/Pods-DoorBadge/Pods-DoorBadge.debug.xcconfig"; sourceTree = "<group>"; };
 		F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -146,6 +150,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7AC45C482312FCA80055EE8B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7AC45C492312FCC00055EE8B /* DataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		AAD98DB3276809E14B17D34E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +196,7 @@
 		F3707B452270A6F1000A010B /* DoorBadge */ = {
 			isa = PBXGroup;
 			children = (
+				7AC45C482312FCA80055EE8B /* Managers */,
 				7AC45C45231079310055EE8B /* Extensions */,
 				F3707B462270A6F1000A010B /* AppDelegate.swift */,
 				F3DDB85F228A97AF007CEC8A /* FirebaseReference.swift */,
@@ -241,6 +254,7 @@
 		F39FCC4F227545F9007CD427 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7AC45C4B2312FFDB0055EE8B /* SpinnerViewController.swift */,
 				F35A11D222DC2C1B00D664C4 /* AddMemoryViewController.swift */,
 				F3FE261622AEE41600D5FE8B /* CenterScaleToFitImageView.swift */,
 				F3F34C0B229CE0C500044978 /* EventInfoViewController.swift */,
@@ -421,6 +435,8 @@
 				F32FF9F722D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift in Sources */,
 				F3D04AE722948BD700AB3D14 /* DoorBadgeEventViewController.swift in Sources */,
 				F3F947DC2276A60300B1D516 /* DoorBadgeAddEventAdminViewController.swift in Sources */,
+				7AC45C4C2312FFDB0055EE8B /* SpinnerViewController.swift in Sources */,
+				7AC45C4A2312FCC00055EE8B /* DataManager.swift in Sources */,
 				F33D2440228B298C00BC973D /* TabBarController.swift in Sources */,
 				F3A6953622B1FBE900904812 /* FamilyEvents.swift in Sources */,
 				F3BD0E902294990E00ABC7D7 /* GiftCellTableViewCell.swift in Sources */,

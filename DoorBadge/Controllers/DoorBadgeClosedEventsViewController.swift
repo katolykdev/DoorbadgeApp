@@ -83,9 +83,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
             print("gettingFam")
             
             getFamily()
-        } else {
-            getFacility()
-            print("gettingFacility")
         }
     }
     
@@ -125,63 +122,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                     return $0.eventLastName < $1.eventLastName
                 }
             })
-        }
-    }
-    
-    func getFacility(){
-        let user = Auth.auth().currentUser
-        
-        if let user = user {
-            
-            let uid = user.uid
-            
-            let facilityRef = db.collection("facilities").document("\(uid)")
-            
-            facilityRef.getDocument { (document, error) in
-                
-                if let facility = document.flatMap({
-                    
-                    $0.data().flatMap({ (data) in
-                        
-                        return Facility(dictionary: data)
-                        
-                    })
-                    
-                }) {
-                    FacilityEvents.loggedInFacility = facility
-                    
-                    if let currentFacility = FacilityEvents.loggedInFacility {
-                        let events = currentFacility.events
-                        
-                        for event in events {
-                            let eventRef = Firestore.firestore().collection("events").document(event)
-                            
-                            eventRef.getDocument { (document, error) in
-                                if let event = document.flatMap({
-                                    $0.data().flatMap({ (data) in
-                                        return Event(dictionary: data)
-                                    })
-                                }) {
-                                    
-                                    if event.isOpen {
-                                        
-                                    } else {
-                                        
-                                        FacilityEvents.pastEvents.append(event)
-                                        self.closedEventsTableView.reloadData()
-                                        self.defaultSort()
-                                        
-                                    }
-                                } else {
-                                    print("that: document does not exist")
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    print("this: document does not exist")
-                }
-            }
         }
     }
     

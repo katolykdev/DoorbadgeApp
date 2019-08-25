@@ -16,5 +16,6 @@ pod 'FirebaseStorage'
 pod 'Firebase/Database'
 pod 'FirebaseUI/Storage'
 pod 'IHKeyboardAvoiding'
+pod 'MBProgressHUD'
 
 end
