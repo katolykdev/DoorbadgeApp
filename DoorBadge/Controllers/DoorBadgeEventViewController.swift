@@ -287,11 +287,7 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if logInType == "facility" {
-            return EventGifts.gifts.count
-        } else {
-            return EventGifts.gifts.count
-        }
+        return EventGifts.gifts.count
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -322,7 +318,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
                 } else {
                     
                 }
-            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "giftFamilyCell", for: indexPath) as? GiftAsFamilyTableViewCell else {

@@ -27,7 +27,6 @@ class memoryBookCommentCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         memoryBookStackViewHeight.constant = 150
         memoryPhotoButton.isUserInteractionEnabled = true
@@ -59,16 +58,12 @@ class memoryBookCommentCell: UITableViewCell {
     }
     
 //    func animate() {
-//        
 //        memoryBookController?.animateImageView(statusImageView: memoryPhotoButton, media:)
-//   
 //    }
     
     @IBAction func clickedPhotoButtonForCell(_ sender: UIButton) {
 //        if let btnAction = self.yourobj {
-//
 //            btnAction()
-//
 //        }
         sender.pulsate()
         memoryBookController?.animateImageView(statusImageView: memoryPhotoButton, media: "photo")

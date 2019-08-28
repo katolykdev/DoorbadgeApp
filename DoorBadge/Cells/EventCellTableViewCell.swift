@@ -15,10 +15,6 @@ class EventCellTableViewCell: UITableViewCell {
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventCodeLabel: UILabel!
     @IBOutlet weak var eventImageView: UIImageView!
-    //        override func awakeFromNib() {
-    //            super.awakeFromNib()
-    //            // Initialization code
-    //        }
     
     override func prepareForReuse() {
         self.eventDateLabel.text = ""

@@ -87,7 +87,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
     @IBOutlet var imageButton3: UIButton!
     
    func takePhoto(_ sender: UIImageView) {
-
 //        if count < imageViews.count {
 //            //present UiimagePicker
 //            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
@@ -99,7 +98,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 imagePicker.allowsEditing = true
                 self.present(imagePicker, animated: true, completion: nil)
 //            }
-//
 //        } else {
 //            // alert no more pictures allowed
 //
@@ -107,7 +105,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
     }
     
     func scaleImage(image:UIImage, view:UIImageView, customWidth: CGFloat?) -> UIImage {
-        
         let oldWidth = image.size.width
         let oldHeight = image.size.height
         var scaleFactor:CGFloat
@@ -115,11 +112,9 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
         var newWidth:CGFloat
         
         if let customWidth = customWidth {
-            
             let viewWidth:CGFloat = customWidth * 3
             
             if oldWidth > oldHeight {
-                
                 scaleFactor = oldWidth/oldHeight
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
@@ -129,7 +124,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 newWidth = viewWidth
             }
         } else {
-            
             let viewWidth:CGFloat = view.bounds.width * 3
             
             if oldWidth > oldHeight {
@@ -138,7 +132,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             } else {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
@@ -240,10 +233,8 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
             if giftSecondaryImages.count == 0 {
                 
             } else if giftSecondaryImages.count == 1 {
-                
                 self.imageButton2!.sd_setImage(with: URL(string: giftSecondaryImages[0]), for: .normal) { (image, err, cache, url) in
                 }
-                
             } else if giftSecondaryImages.count == 2 {
                 for url in giftSecondaryImages {
                     print("url:\(url)")
@@ -355,7 +346,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
             
             var giftsRef: DocumentReference? = nil
             
-            
             if editingGift == true {
               db.collection("events").document("\(giftEventId)").collection("gifts").document("\(giftGiftID)").setData([
                     
@@ -397,14 +387,12 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                     newImageThumbRef.delete { (error) in
                         if error != nil {
                         } else {
-                            
                             //Empty image URL
                             var newImageThumbURL = ""
                             
                             //Add Image data to firebase Storage
                             newImageThumbRef.putData(dataThumb).observe(.success, handler:
                                 { (snapshot) in
-                                    
                                     //On success, get new image download URL
                                     newImageThumbRef.downloadURL(completion: { (url, error) in
                                         
@@ -424,7 +412,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                             //////////// IMAGE 2 ////////////////////////////////////
                                             ////////////////////////////////////////////////////////
                                             
-                                            
                                             guard let image2Thumb = self.imageButton2.currentImage
                                                 else {
                                                     print("Something went wrong")
@@ -432,7 +419,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                             }
                                             
                                             let newImage2Thumb = self.scaleImage(image: image2Thumb, view: self.imageButton2.imageView!, customWidth: 343.0)
-                                            
                                             
                                             guard let data2Thumb = newImage2Thumb.jpegData(compressionQuality: 0.4)
                                                 else {
@@ -477,7 +463,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                                                     //////////// IMAGE 3 ////////////////////////////////////
                                                                     ////////////////////////////////////////////////////////
                                                                     
-                                                                    
                                                                     guard let image3Thumb = self.imageButton3.currentImage
                                                                         else {
                                                                             print("Something went wrong")
@@ -485,7 +470,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                                                     }
                                                                     
                                                                     let newImage3Thumb = self.scaleImage(image: image3Thumb, view: self.imageButton3.imageView!, customWidth: 343.0)
-                                                                    
                                                                     
                                                                     guard let data3Thumb = newImage3Thumb.jpegData(compressionQuality: 0.4)
                                                                         else {
@@ -541,11 +525,8 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                                                                                 EventGifts.gifts[index] = newLocalGift
                                                                                             }
                                                                                             
-                                                                                            
                                                                                             print("success")
                                                                                             self.dismiss(animated: true, completion: {
-                                                                                                
-        
                                                                                                 
                                                                                             })
                                                                                             
@@ -558,19 +539,15 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                                             })
                                                     })
                                                 }
-                                    
                                             }
                                         }
                                     })
                             })
                         }
-                            
                 }
             } else {  //Adding a new gift
-
                 print("have doc, bout to submit")
                
-                
                 giftsRef = eventRef.document("\(self.currentEventId)").collection("gifts").addDocument(data: giftDictionary) { err in
                 
                     if let err = err {
@@ -587,7 +564,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
     //                    let giftRef = self.eventRef.document(giftId)
                         //Add Event ID to Event in Firebase
                         giftsRef?.updateData(["giftId" : giftId])
-
                         
                         //Get selected Image from ImageView   //Get Data from Image
                         guard let imageThumb = self.imageButton1.currentImage
@@ -598,7 +574,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
 
                         let newImageThumb = self.scaleImage(image: imageThumb, view: self.imageButton1.imageView!, customWidth: 343.0)
 
-                    
                         guard let dataThumb = newImageThumb.jpegData(compressionQuality: 0.4)
                             else {
                                 print("Something went wrong")
@@ -647,7 +622,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                                 print("Something went wrong")
                                                 return
                                         }
-                                        
                                         
                                         //Reference Event Images folder in Firebase
                                         let imageStorageRef = Storage.storage().reference().child("gift-images").child("events").child(self.currentEventId).child("gifts")
@@ -729,7 +703,6 @@ class DoorBadgeAddGiftViewController: UIViewController, UIImagePickerControllerD
                                                                         
                                                                             if let presenter = self.presentingViewController as? EventInfoViewController {
                                                                                 presenter.submittedGift = true
-                                                                                
                                                                             }
                                                                     }
                                                                 })

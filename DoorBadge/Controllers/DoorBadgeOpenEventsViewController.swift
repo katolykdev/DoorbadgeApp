@@ -37,7 +37,6 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
 
     @IBOutlet var rightAddButton: UIBarButtonItem!
     
-    
     @IBOutlet weak var leftSortButton: UIBarButtonItem!
     
     @IBOutlet weak var openEventsTableView: UITableView!

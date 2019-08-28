@@ -28,13 +28,11 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    
                     let comment = Memory(dictionary: document.data())
                     
 //                    self.comments.append(comment!)
                     MemoryBookEvent.comments.append(comment!)
                     MemoryBookEvent.comments.sort(by: {
-                        
                             return $1.date < $0.date
                     })
                  
@@ -108,7 +106,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                 self.playerLayer.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: height)
                 self.view.layer.addSublayer(self.playerLayer)
                 self.player.play()
-                
                 
                 self.topView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
                 self.topView.backgroundColor = UIColor.clear
@@ -209,7 +206,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
                     UIControl.State.normal, placeholderImage: UIImage(named:
                         "default_profile"), options: SDWebImageOptions(rawValue: 0)) { (image,
                             error, cache, url) in
-                            
                 }
                 
                 cell.yourobj = {
@@ -318,7 +314,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
             self)
         if MemoryBookEvent.comments.count > 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                
                 self.memoryBookTableView.scrollToTop()
             }
         }
@@ -344,26 +339,19 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
 //        if defaults.string(forKey: "didPopModal") == "popped" {
         
             MemoryBookEvent.comments.sort(by: {
-                
                 return $1.date < $0.date
             })
         
 //            self.memoryBookTableView.scrollToTop()
-        
-            
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 //                // your code here
-//
 //                let index = IndexPath(row: MemoryBookEvent.comments.count - 1, section: 0)
 //                self.memoryBookTableView.scrollToRow(at: index, at: .bottom, animated: true)
-//
 //            }
 //            self.defaults.set("unpopped", forKey: "didPopModal")
 //        } else {
 //
-//
 //        }
-        
         
 //        if MemoryBookEvent.comments.count > 1 {
 //            memoryBookTableView.scrollToTop()

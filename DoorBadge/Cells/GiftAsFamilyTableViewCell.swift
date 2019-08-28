@@ -12,7 +12,6 @@ class GiftAsFamilyTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.containerView.layer.borderWidth = 1
         let grayColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1)
         self.containerView.layer.borderColor = grayColor.cgColor

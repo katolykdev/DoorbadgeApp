@@ -144,11 +144,9 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
             if Auth.auth().currentUser == nil {
                 Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                     if error != nil {
-                        
                         self.handleFirebaseErrors(error: error! as NSError, onComplete: onComplete)
                         self.stopButtonAnimation()
                     } else {
-                        
                         self.dbLogInButton.hideLoading()
                         
                         if self.logInPageTitleText == "Family" {
@@ -173,7 +171,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                         alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
                                         
                                         alert.addAction(UIAlertAction(title: "Switch to Facility", style: .default, handler: { action in
-                                            
                                             self.logInPageTitle.text = "Facility Login"
                                             self.logInPageTitleText = "Facility"
                                         }))
@@ -186,7 +183,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                             UserDefaults.standard.set("facility", forKey: "logInType")
                             
                             if let uid = Auth.auth().currentUser?.uid {
-                                
                                 let facilityDocRef = self.facilityRef.document(uid)
                                 
                                 facilityDocRef.getDocument { (document, error) in
@@ -203,10 +199,8 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                         alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
                                         
                                         alert.addAction(UIAlertAction(title: "Switch To Family", style: .default, handler: { action in
-                                            
                                             self.logInPageTitle.text = "Family Login"
                                             self.logInPageTitleText = "Family"
-                                            
                                         }))
                                         
                                         self.present(alert, animated: true)

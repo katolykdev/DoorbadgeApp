@@ -98,7 +98,6 @@ class DoorBadgePreLogInViewController: UIViewController {
             
         }
             if let dbLogInVC = segue.destination as? DoorBadgeLogInViewController {
-    
                 if segue.identifier == "toLogIn" {
                     if LoggedIn.accountType == "family" {
                         dbLogInVC.logInPageTitleText = "Family"

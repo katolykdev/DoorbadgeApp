@@ -61,7 +61,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
         button1 = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(swapCamera)) // action:#selector(Class.MethodName) for swift 3
         button1.title = "Switch Camera"
         self.navigationItem.rightBarButtonItem  = button1
-
         
         recordingCircle.layer.cornerRadius = 7
         recordingCircle.layer.masksToBounds = true
@@ -117,7 +116,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
     
     /// Create new capture device with requested position
     fileprivate func captureDevice(with position: AVCaptureDevice.Position) -> AVCaptureDevice? {
-        
         let devices = AVCaptureDevice.DiscoverySession(deviceTypes: [ .builtInWideAngleCamera, .builtInMicrophone, .builtInDualCamera, .builtInTelephotoCamera ], mediaType: AVMediaType.video, position: .unspecified).devices
         
         //if let devices = devices {
@@ -301,7 +299,6 @@ class VideoRecorderController: UIViewController, AVCaptureFileOutputRecordingDel
             let device = activeInput.device
             
             if (device.isSmoothAutoFocusSupported) {
-                
                 do {
                     try device.lockForConfiguration()
                     device.isSmoothAutoFocusEnabled = false

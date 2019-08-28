@@ -57,7 +57,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
         })
     }
     
-    
     func scaleImage(image:UIImage, view:UIImageView, customWidth: CGFloat?) -> UIImage {
         let oldWidth = image.size.width
         let oldHeight = image.size.height
@@ -130,7 +129,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                                 //Because this is based on date as the unique identifier, if 2 comments submitted at the same time, won't work as expected
                             }
                         })
-                
                 self.dismiss(animated: true, completion: {
                     
                 })
@@ -140,21 +138,16 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
         vidUploadTask.observe(.progress) { (snapshot) in
             let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
                 / Double(snapshot.progress!.totalUnitCount)
-          
             
             self.videoButton.setTitle("\(percentComplete.roundToInt())%", for: .normal)
             
             if percentComplete.roundToInt() == 100 {
-                
                 DispatchQueue.main.asyncAfter(deadline:.now() + 1.0, execute: {
-                    
                     self.videoButton.setTitle("", for: .normal)
                     self.videoButton.setImage(UIImage(named: "sentIcon"), for: .normal)
                     
                     DispatchQueue.main.asyncAfter(deadline:.now() + 1.0, execute: {
-                        
                         if self.photoButton.image(for: .normal) == UIImage(named: "videoIcon") || self.photoButton.image(for: .normal) == UIImage(named: "sentIcon") {
-                            
                             self.dismiss(animated: true, completion: {
                                 
                             })
@@ -201,9 +194,7 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                     }
                 }
                 if self.photoButton.image(for: .normal) != UIImage(named: "photoIcon") {
-                    
                     //CREATE IMAGE THUMB, IMAGE
-                    
                     //IMAGE THUMB
                     
                     //Get selected Image from ImageView   //Get Data from Image
@@ -213,7 +204,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                             return
                     }
                     let newImageThumb = self.scaleImage(image: imageThumb, view: self.photoButton.imageView!, customWidth: 100)
-                    
                     let newImageFull = self.scaleImage(image: imageThumb, view: self.photoButton.imageView!, customWidth: 320)
                     
                     guard let dataThumb = newImageThumb.jpegData(compressionQuality: 0.3)
@@ -233,7 +223,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     //Reference & name new image in Firebase
                     let newImageThumbRef = imageStorageRef.child(memoryId!)
-                    
                     let newImageFullRef = imageStorageRef.child("\(memoryId!)-full")
                     
                     //Empty image URL
@@ -246,7 +235,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                             
                             //On success, get new image download URL
                             newImageThumbRef.downloadURL(completion: { (url, error) in
-                                
                                 if let error = error {
                                     print(error)
                                 } else {
@@ -273,17 +261,13 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
                     
                     newImageFullRef.putData(dataFull).observe(.progress, handler:
                         { (snapshot) in
-                            
                             let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
                                 / Double(snapshot.progress!.totalUnitCount)
                           
                             
                             self.photoButton.setTitle("\(percentComplete.roundToInt())%", for: .normal)
-
                             if percentComplete.roundToInt() == 100 {
-   
                                 DispatchQueue.main.asyncAfter(deadline:.now() + 1.0, execute: {
-
                                         self.photoButton.setTitle("", for: .normal)
 //                                        self.photoButton.setImage(UIImage(named: "sentIcon"), for: .normal)
 //                                    }
@@ -545,7 +529,6 @@ class AddMemoryViewController: UIViewController, UIImagePickerControllerDelegate
         self.navigationController?.navigationBar.isHidden = true
         
         if LatestVideoURL.pathString != "" {
-            
             let urlstring = LatestVideoURL.pathString
             
             if let url = URL(string: urlstring) {

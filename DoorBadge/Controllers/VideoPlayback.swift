@@ -70,7 +70,6 @@ class VideoPlayback: UIViewController {
     }
     
 //    func saveVideo(url: URL) {
-//        
 //        let filename = "testName2.mp4"
 //        
 //        let uploadTask = Storage.storage().reference().child("comment-videos").child(filename).putFile(from: url, metadata: nil, completion:  { (metadata, error) in
@@ -78,16 +77,13 @@ class VideoPlayback: UIViewController {
 //                print("failed video upload:", error as Any)
 //                return
 //            } else {
-//                
 //                for controller in self.navigationController!.viewControllers as Array {
 //                    if controller.isKind(of: AddMemoryViewController.self) {
 //                        _ =  self.navigationController!.popToViewController(controller, animated: true)
 //                        break
 //                    }
 //                }
-//                
 //            }
-//            
 //        })
 //        progressLabel.isHidden = false
 //        progressView.isHidden = false
@@ -101,8 +97,6 @@ class VideoPlayback: UIViewController {
 //        self.progressView.setProgress(Float(self.progress.fractionCompleted), animated: true)
 //
 //        }
-//        
-//        
 //    }
     
     @objc  func closeModal() {

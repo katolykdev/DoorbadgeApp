@@ -68,9 +68,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     
     @IBOutlet weak var scrollHostView: UIView!
     @IBAction func didTapSentUnsent(_ sender: Any) {
-        
         if thankYouWasSent {
-            
             thankYouWasSent = false
           
             sentUnsentButton.setTitle("Mark As Sent", for: .normal)
@@ -105,7 +103,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     func setupImages(_ images: [String]){
         print("did run setupImages")
         for i in 0..<images.count {
-            
             let imageView = UIImageView()
 
             imageView.sd_setImage(with: URL(string: imagesArray[i])) { (image, error, cache, url) in
@@ -150,9 +147,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
 //            scrollView.maximumZoomScale = 10.0
 //            scrollView.addSubview(imageView)
 //            scrollView.delegate = self as? UIScrollViewDelegate
-//
 //        }
-//
 //    }
     
     func popoverDismissed() {
@@ -176,7 +171,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             self.giftThankYouSent = gift.thankYouSent
             self.giftId = gift.giftId
             
-            
             SDImageCache.shared.removeImageFromDisk(forKey: self.giftId)
             SDImageCache.shared.removeImageFromMemory(forKey: self.giftId)
             
@@ -189,28 +183,22 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             self.imagesArray = []
             
             if gift.mainImage != "" {
-                
                 self.imagesArray.append("\(gift.mainImage)")
                 
                 if self.giftSecondaryImages.count == 0 {
-                    
                     for image in self.imagesArray {
                         print("from count 0 : \(image)")
                     }
                     
                     self.setupImages(self.imagesArray)
-                    
                 } else if self.giftSecondaryImages.count == 1 {
-                    
                     self.imagesArray.append("\(gift.secondaryImages[0])")
                     
                     for image in self.imagesArray {
                         print("from count 1 : \(image)")
                     }
                     self.setupImages(self.imagesArray)
-                    
                 } else if self.giftSecondaryImages.count == 2 {
-                    
                     self.imagesArray.append("\(gift.secondaryImages[0])")
                     self.imagesArray.append("\(gift.secondaryImages[1])")
                     
@@ -271,28 +259,22 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                     self.imagesArray = []
                     
                     if gift.mainImage != "" {
-                        
                         self.imagesArray.append("\(gift.mainImage)")
                         
                         if self.giftSecondaryImages.count == 0 {
-                            
                             for image in self.imagesArray {
                                 print("from count 0 : \(image)")
                             }
                             
                             self.setupImages(self.imagesArray)
-                            
                         } else if self.giftSecondaryImages.count == 1 {
-                            
                             self.imagesArray.append("\(gift.secondaryImages[0])")
                             
                             for image in self.imagesArray {
                                 print("from count 1 : \(image)")
                             }
                             self.setupImages(self.imagesArray)
-                            
                         } else if self.giftSecondaryImages.count == 2 {
-                            
                             self.imagesArray.append("\(gift.secondaryImages[0])")
                             self.imagesArray.append("\(gift.secondaryImages[1])")
                             
@@ -300,7 +282,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                                 print("from count 2 : \(image)")
                             }
                             self.setupImages(self.imagesArray)
-                            
                         }
                     }
 
@@ -358,28 +339,22 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
                 self.imagesArray = []
                 
                 if gift.mainImage != "" {
-                    
                     self.imagesArray.append("\(gift.mainImage)")
                     
                     if self.giftSecondaryImages.count == 0 {
-                        
                         for image in self.imagesArray {
                             print("from count 0 : \(image)")
                         }
                         
                         self.setupImages(self.imagesArray)
-                        
                     } else if self.giftSecondaryImages.count == 1 {
-                        
                         self.imagesArray.append("\(gift.secondaryImages[0])")
                         
                         for image in self.imagesArray {
                             print("from count 1 : \(image)")
                         }
                         self.setupImages(self.imagesArray)
-                        
                     } else if self.giftSecondaryImages.count == 2 {
-                        
                         self.imagesArray.append("\(gift.secondaryImages[0])")
                         self.imagesArray.append("\(gift.secondaryImages[1])")
                         
@@ -398,9 +373,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "editGiftModal" {
-            
             if let editGiftVC = segue.destination as? DoorBadgeAddGiftViewController {
-                
                 editGiftVC.editingGift = true
                 editGiftVC.giftTitle = giftTitle
                 editGiftVC.giftDescription = giftDescription

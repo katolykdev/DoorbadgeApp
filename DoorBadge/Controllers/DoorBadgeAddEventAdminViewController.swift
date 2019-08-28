@@ -34,7 +34,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
     let modesOfContact = ["Phone", "Email"]
     
     var eventDictionary: [String : Any] = [
-        
         "facilityId": "",
         "eventId": "",
         "eventCode":"",
@@ -109,9 +108,7 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
     
     @IBOutlet weak var imageComponentContainer: UIView!
     
-    
     @IBOutlet weak var uploadedImageView: UIImageView!
-    
     
     @IBOutlet var eventHeadingLabel: UILabel!
     
@@ -146,7 +143,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
     }
     
     func scaleImage(image:UIImage, view:UIImageView, customWidth: CGFloat?) -> UIImage {
-        
         let oldWidth = image.size.width
         let oldHeight = image.size.height
         var scaleFactor:CGFloat
@@ -154,32 +150,25 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         var newWidth:CGFloat
         
         if let customWidth = customWidth {
-            
             let viewWidth:CGFloat = customWidth * 3
             
             if oldWidth > oldHeight {
-                
                 scaleFactor = oldWidth/oldHeight
                 newHeight = viewWidth
                 newWidth = viewWidth * scaleFactor
             } else {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
             }
-            
         } else {
-            
             let viewWidth:CGFloat = view.bounds.width * 3
             
             if oldWidth > oldHeight {
-                
                 scaleFactor = oldWidth/oldHeight
                 newHeight = viewWidth
                 newWidth = viewWidth * scaleFactor
             } else {
-                
                 scaleFactor = oldHeight/oldWidth
                 newHeight = viewWidth * scaleFactor
                 newWidth = viewWidth
@@ -192,29 +181,21 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
-        
     }
     
     @IBAction func submitEvent(_ sender: Any) {
-
         submitEvent.showLoading()
         
-
         if let currentUser = Auth.auth().currentUser {
-
             eventDictionary.updateValue(currentUser.uid, forKey: "facilityId")
             eventDictionary.updateValue(primaryEmailTextField.text ?? "", forKey: "primaryUserEmail")
 
             eventDictionary.updateValue(eventTitleTextField.text ?? "", forKey: "title")
             eventDictionary.updateValue(eventDescriptionTextField.text ?? "", forKey: "description")
             if eventDateTextField.text == "" {
-                
                 eventDictionary.updateValue("99999999", forKey: "date")
-                
             } else {
-                
                 eventDictionary.updateValue(eventDateTextField.text ?? "", forKey: "date")
-                
             }
 
             eventDictionary.updateValue(eventLocationTextField.text ??  "", forKey: "location")
@@ -235,7 +216,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
             
             if isEditing == true {
                 db.collection("events").document(existingEvent!.eventId).setData([
- 
                     "date": eventDateTextField.text ?? "",
                     "dateOfBirth": eventDateOfBirth.text ?? "",
                     "dateOfDeath": eventDateOfDeath.text ?? "",
@@ -250,9 +230,7 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                     "familyPhone": familyDetailsPhoneNumber.text ?? "",
                     "location": eventLocationTextField.text ??  "",
                     "title": eventTitleTextField.text ?? "",
-  
                 ], merge: true) { err in
-                    
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
@@ -274,7 +252,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                         }
                         
                         let newImageThumb = self.scaleImage(image: imageThumb, view: self.uploadedImageView, customWidth: nil)
-                        
                         let newImageFull = self.scaleImage(image: imageFull, view: self.uploadedImageView, customWidth: 320.0)
                         
                         guard let dataThumb = newImageThumb.jpegData(compressionQuality: 0.3)
@@ -288,7 +265,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                 print("Something went wrong")
                                 return
                         }
-                        
                         
                         //Reference Event Images folder in Firebase
                         let imageStorageRef = Storage.storage().reference().child("event-images")
@@ -311,13 +287,11 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                     if let error = error {
                                         print(error)
                                     } else {
-                                        
                                         //Set download image URL to variable as a String
                                         newImageThumbURL = url?.absoluteString ?? ""
                                         
                                         //Add Image URL String to Event in Firebase
                                         self.db.collection("events").document(self.existingEvent!.eventId).updateData(["image" : newImageThumbURL])
-                                        
                                         
                                         FacilityEvents.currentEvents = FacilityEvents.currentEvents.map{
                                             var mutableEvent = $0
@@ -330,31 +304,22 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                         
                                         //Dismiss Add Event Modal
 //                                        self.dismiss(animated: true, completion: {
-//
 //                                            print("edited and dismissed")
-//
 //                                        })
                                     }
                                 })
-                                
                                 print("success")
-                                
-                                
                         })
                         newImageFullRef.putData(dataFull).observe(.success, handler:
                             { (snapshot) in
                                 
                                 //On success, get new image download URL
                                 newImageFullRef.downloadURL(completion: { (url, error) in
-                                    
                                     if let error = error {
                                         print(error)
                                     } else {
-                                        
                                         //Set download image URL to variable as a String
                                         newImageFullURL = url?.absoluteString ?? ""
-                                        
-                                        
                                         
                                         //Add Image URL String to Event in Firebase
                                         self.db.collection("events").document(self.existingEvent!.eventId).updateData(["image" : newImageFullURL])
@@ -398,41 +363,30 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                         print("first:\(newLocalEvent)")
                                         
                                         if self.existingEvent.isOpen {
-                                            
                                             if let index = FacilityEvents.currentEvents.index(where: {$0.eventCode == newLocalEvent.eventCode}) {
                                                 FacilityEvents.currentEvents[index] = newLocalEvent
                                                 print("image existed - image added - edited and dismissed")
                                                 
-                                                
                                                 self.dismiss(animated: true, completion: {
-                                                    
                                                     print(FacilityEvents.currentEvents[index].eventFirstName)
-                                                    
                                                 })
                                             }
                                         } else {
-                                            
                                             if let index = FacilityEvents.pastEvents.index(where: {$0.eventCode == newLocalEvent.eventCode}) {
                                                 FacilityEvents.pastEvents[index] = newLocalEvent
                                                 print("image existed - image added - edited and dismissed")
                                                 print(FacilityEvents.pastEvents[index].eventFirstName)
                                                 
                                                 self.dismiss(animated: true, completion: {
-                                                    
                                                     print(FacilityEvents.currentEvents[index].eventFirstName)
-                                                    
                                                 })
                                             }
                                         }
                                         print("success full")
                                     }
                                 })
-                                
                                 print("success")
-                                
-                                
                         })
-                    
                     } else {
                         //image already existed
                             print("image existed")
@@ -449,8 +403,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                 
                             } else {
                                 print("thumb removed")
-                                
-                                
                             }
                         }
                     
@@ -467,7 +419,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                 }
                                 
                                 let newImageThumb = self.scaleImage(image: imageThumb, view: self.uploadedImageView, customWidth: nil)
-                                
                                 let newImageFull = self.scaleImage(image: imageFull, view: self.uploadedImageView, customWidth: 320.0)
                                 
                                 guard let dataThumb = newImageThumb.jpegData(compressionQuality: 0.3)
@@ -482,7 +433,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                         return
                                 }
                                 
-                                
                                 //Reference Event Images folder in Firebase
                                 let imageStorageRef = Storage.storage().reference().child("event-images")
                                 
@@ -490,15 +440,10 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                 let newImageThumbRef = imageStorageRef.child(self.existingEvent.eventId)
                                 let newImageFullRef = imageStorageRef.child("\(self.existingEvent.eventId)-full")
                                 
-
                                 //Add Image data to firebase Storage
                                 newImageThumbRef.putData(dataThumb).observe(.success, handler:
                                     { (snapshot) in
-                                        
-
                                         print("success thumb")
-                                        
-                                        
                                 })
                                 newImageFullRef.putData(dataFull).observe(.success, handler:
                                     { (snapshot) in
@@ -531,38 +476,27 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                         print("first:\(newLocalEvent)")
                                         
                                         if self.existingEvent.isOpen {
-                                            
                                             if let index = FacilityEvents.currentEvents.index(where: {$0.eventCode == newLocalEvent.eventCode}) {
                                                 FacilityEvents.currentEvents[index] = newLocalEvent
                                                 print("image existed - image added - edited and dismissed")
                                                 
-                                                
                                                 self.dismiss(animated: true, completion: {
-                                                    
                                                     print(FacilityEvents.currentEvents[index].eventFirstName)
-                                                    
                                                 })
                                             }
                                         } else {
-                                            
                                             if let index = FacilityEvents.pastEvents.index(where: {$0.eventCode == newLocalEvent.eventCode}) {
                                                 FacilityEvents.pastEvents[index] = newLocalEvent
                                                 print("image existed - image added - edited and dismissed")
                                                 print(FacilityEvents.pastEvents[index].eventFirstName)
                                                 
                                                 self.dismiss(animated: true, completion: {
-                                                    
                                                     print(FacilityEvents.currentEvents[index].eventFirstName)
-                                                    
                                                 })
                                             }
                                         }
                                         print("success full")
                                 })
-                                
-                                
-
-                            
                             }
                         }
                     } //End of image already existed or not
@@ -596,11 +530,9 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                     print("first:\(newLocalEvent)")
                     
                     if self.existingEvent.isOpen {
-                        
                         if let index = FacilityEvents.currentEvents.index(where: {$0.eventCode == newLocalEvent.eventCode}) {
                             FacilityEvents.currentEvents[index] = newLocalEvent
                             print("image existed - image added - edited and dismissed")
-                            
                             
                             self.dismiss(animated: true, completion: {
                                 
@@ -609,33 +541,24 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                             })
                         }
                     } else {
-                        
                         if let index = FacilityEvents.pastEvents.index(where: {$0.eventCode == newLocalEvent.eventCode}) {
                             FacilityEvents.pastEvents[index] = newLocalEvent
                             print("image existed - image added - edited and dismissed")
                             print(FacilityEvents.pastEvents[index].eventFirstName)
                             
                             self.dismiss(animated: true, completion: {
-                                
                                 print(FacilityEvents.currentEvents[index].eventFirstName)
-                                
                             })
                         }
                     }
                     print("success full")
-                    
-                    
                 }
             } else { //Is not editing, is creating
-
                 ref = db.collection("events").addDocument(data: eventDictionary) { err in
                     
                     if let err = err {
-                        
                         print("Error adding document: \(err)")
-                        
                     } else {
-
                         //CREATE EVENT
                         
                         //Get Event ID from Firebase
@@ -666,9 +589,7 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                         eventRef.getDocument { (document, error) in
                             if let event = document.flatMap({$0.data().flatMap({ (data) in return Event(dictionary: data)})}) {
                                 FacilityEvents.currentEvents.append(event)
-                               
                             }
-
 
                         //If image is not default Icon
                         if self.uploadedImageView.image != UIImage(named: "photoIcon") {
@@ -681,7 +602,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                             }
                             
                             let newImageThumb = self.scaleImage(image: imageThumb, view: self.uploadedImageView, customWidth: nil)
-                            
                             let newImageFull = self.scaleImage(image: imageFull, view: self.uploadedImageView, customWidth: 190.0)
                             
                             guard let dataThumb = newImageThumb.jpegData(compressionQuality: 0.3)
@@ -717,15 +637,12 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                         if let error = error {
                                             print(error)
                                         } else {
-
                                             //Set download image URL to variable as a String
                                             newImageThumbURL = url?.absoluteString ?? ""
-
 
                                             //Add Image URL String to Event in Firebase
                                             eventRef.updateData(["image" : newImageThumbURL])
                                             
-
                                             FacilityEvents.currentEvents = FacilityEvents.currentEvents.map{
                                                 var mutableEvent = $0
                                                 if $0.eventId == eventId {
@@ -740,20 +657,16 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                             })
                                         }
                                     })
-
                                     print("success")
-
                             })
                             newImageFullRef.putData(dataFull).observe(.success, handler:
                                 { (snapshot) in
                                     
                                     //On success, get new image download URL
                                     newImageFullRef.downloadURL(completion: { (url, error) in
-                                        
                                         if let error = error {
                                             print(error)
                                         } else {
-                                            
                                             //Set download image URL to variable as a String
                                             newImageFullURL = url?.absoluteString ?? ""
      
@@ -774,19 +687,13 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
     //                                        })
                                         }
                                     })
-                                    
                                     print("success")
-              
                             })
                         } else {
-                            
                             //Dismiss Add Event Modal
                             self.dismiss(animated: true, completion: {
                                 
-                                
-                                
                             })
-        
                         }
 
                         /////////////////////////
@@ -797,21 +704,15 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                         let primaryEmail = self.primaryEmailTextField.text!
                             
                         let userRef = self.db.collection("users").whereField("email", isEqualTo: primaryEmail)
-                            
                             userRef.getDocuments() { (querySnapshot, err) in
                                 if let err = err {
                                     print("Error getting documents: \(err)")
-                                    
                                 } else {
-                                    
                                     if querySnapshot!.documents.count == 0 {
-                                        
-                                        
                                         let password = "tempPassword"
                                         
                                         //Create second app
                                         if let secondaryApp = FirebaseApp.app(name: "CreatingUsersApp") {
-                                            
                                             let secondaryAppAuth = Auth.auth(app: secondaryApp)
                                             
                                             //////////////////////////////////
@@ -822,7 +723,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                                 if error != nil {
                                                     print(error!)
                                                 } else {
-                                                    
                                                     ///////////////////////////////////////////
                                                     // ADD NEW USER TO EVENT AS PRIMARY USER //
                                                     ///////////////////////////////////////////
@@ -837,10 +737,8 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                                         
                                                         //Add Primary Email and Event ID to User in Firebase
                                                         self.db.collection("users").document(primaryId).setData([
-                                                            
                                                             "email": primaryEmail,
                                                             "events": [ eventId ]
-                                                            
                                                             ])
                                                         
                                                         Auth.auth().sendPasswordReset(withEmail: primaryEmail, completion: { (error) in
@@ -854,20 +752,15 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                                                 }
                                                             }
                                                         })
-                                                        
                                                         ///////////////////////
                                                         // SIGN OUT NEW USER //
                                                         ///////////////////////
-                                                        
                                                         //                                try! secondaryAppAuth.signOut()
-                                                        
                                                     }
                                                 }
                                             }
                                         }
-                                        
                                     } else {
-                                        
                                         addEventToUser: for document in querySnapshot!.documents {
                                             
                                             //Add Primary User ID to Event in Firebase
@@ -879,11 +772,9 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                                             //Add Primary Email and Event ID to User in Firebase
                                             self.db.collection("users").document(document.documentID).updateData(["events" : FieldValue.arrayUnion([eventId])])
                                             break  addEventToUser
-                                            
                                         }
                                     }
                                 }
-
                         }
                     }
                 }
@@ -891,11 +782,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         }
     }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     
     @IBAction func uploadImageDidTap(_ sender: Any) {
         let image = UIImagePickerController()
@@ -907,13 +793,10 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         self.present(image, animated: true)
         {
             //After is complete
-            
         }
-   
     }
     
     @IBAction func fromWebsiteDidTap(_ sender: Any) {
-        
         performSegue(withIdentifier: "toWebView", sender: Any?.self)
     }
 
@@ -922,14 +805,11 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
             uploadedImageView.image = image
             uploadedImageView.contentMode = .scaleAspectFit
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            
-      
             //display error
             uploadedImageView.image = image
             uploadedImageView.contentMode = .scaleAspectFit
         }
         self.dismiss(animated: true, completion:  nil)
-   
     }
     
     private var datePicker: UIDatePicker?
@@ -941,7 +821,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
     var deathDay: Date!
     
     let dateFormatter = DateFormatter()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -970,12 +849,8 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
             familyDetailsZipCode.text = existingEvent.familyZip
             familyDetailsPhoneNumber.text = existingEvent.familyPhone
             familyDetailsContactMode.text = existingEvent.familyModeOfContact
-            
-            
         }
         
-     
-      
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         toolBar.tintColor = UIColor.black
@@ -997,7 +872,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         dateDeathPicker?.datePickerMode = .date
         dateDeathPicker?.addTarget(self, action: #selector(DoorBadgeAddEventAdminViewController.dateDeathChanged(datePicker:)), for: .valueChanged)
         eventDateOfDeath.inputView = dateDeathPicker
-        
         
         modeOfContactPicker = UIPickerView()
         
@@ -1047,7 +921,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         eventDateTextField.delegate = self
         eventDateTextField.tag = 3
         eventDateTextField.setBottomBorder()
-        
         
         let pickerToolBar = UIToolbar().ToolbarPicker(mySelect: #selector(self.dismissPicker))
         
@@ -1163,31 +1036,23 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DoorBadgeAddEventAdminViewController.viewTapped(gestureRecognizer:)))
 
         view.addGestureRecognizer(tapGesture)
-  
     }
-    
-
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         view.endEditing(true)
-    
     }
     
     @objc func dateChanged(datePicker: UIDatePicker) {
-        
         dateFormatter.dateFormat = "MM/dd/yyyy"
         dateInputField.text = dateFormatter.string(from: datePicker.date)
-        
     }
     
     @objc func dateBirthChanged(datePicker: UIDatePicker) {
-        
         dateFormatter.dateFormat = "MM/dd/yyyy"
         eventDateOfBirth.text = dateFormatter.string(from: datePicker.date)
         birthDay = datePicker.date
         
         if let deathday = deathDay {
-
             let calendar = Calendar.current
             let ageComponents = calendar.dateComponents([.year], from: birthDay, to: deathday)
             let age = ageComponents.year!
@@ -1201,17 +1066,14 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                  finalAge = "dna"
             }
         }
-
     }
     
     @objc func dateDeathChanged(datePicker: UIDatePicker) {
-        
         dateFormatter.dateFormat = "MM/dd/yyyy"
         eventDateOfDeath.text = dateFormatter.string(from: datePicker.date)
         deathDay = datePicker.date
         
         if let birthday = birthDay {
-
             let calendar = Calendar.current
             let ageComponents = calendar.dateComponents([.year], from: birthday, to: deathDay)
             let age = ageComponents.year!
@@ -1223,7 +1085,6 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
                 finalAge = "dna"
             }
         }
-        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -1243,90 +1104,55 @@ class DoorBadgeAddEventAdminViewController: UIViewController, UITextFieldDelegat
     }
     
     @IBAction func eventsHeaderDidTap(_ sender: Any) {
-        
         UIView.animate(withDuration: 0.3) {
-            
             if self.eventDetailsHeight.constant == 1012 {
-                
                 self.eventDetailsHeight.constant = 30
                 if self.familyDetailsHeight.constant == 728 {
-                    
                     self.familyDetailsHeight.constant = 30
                 }
-                
             } else {
-                
                 self.eventDetailsHeight.constant = 1012
                 if self.familyDetailsHeight.constant == 728 {
-                    
                     self.familyDetailsHeight.constant = 30
                 }
                                 let bottomOffset = CGPoint(x: 0, y: 118)
                                 self.scrollView.setContentOffset(bottomOffset, animated: true)
-                
             }
-            
             self.view.layoutIfNeeded()
-            
         }
     }
 
     @IBAction func familyHeaderDidTap(_ sender: Any) {
-        
         UIView.animate(withDuration: 0.3) {
-
             if self.familyDetailsHeight.constant == 728 {
-
                 self.familyDetailsHeight.constant = 30
                 if self.eventDetailsHeight.constant == 1012 {
-
                     self.eventDetailsHeight.constant = 30
-
                 }
-                
             } else if self.familyDetailsHeight.constant == 30 && self.eventDetailsHeight.constant == 1012 {
-                
                 self.familyDetailsHeight.constant = 728
-                
-                
                 self.eventDetailsHeight.constant = 30
-                
-                
                 let bottomOffset = CGPoint(x: 0, y: 450)
                 self.scrollView.setContentOffset(bottomOffset, animated: true)
-
-
             } else {
-
                 self.familyDetailsHeight.constant = 728
                 if self.eventDetailsHeight.constant == 1012 {
-
                     self.eventDetailsHeight.constant = 30
-
                 }
                 let bottomOffset = CGPoint(x: 0, y: 170)
                 self.scrollView.setContentOffset(bottomOffset, animated: true)
-
             }
-
             self.view.layoutIfNeeded()
-
         }
-  
     }
     
     @IBAction func addEventModalCloseDidTap() {
-        
         self.dismiss(animated: true, completion: {})
-        
     }
     
     @objc func dismissPicker() {
-        
         view.endEditing(true)
-        
     }
-   
 }
 
 extension UIButton {
@@ -1338,9 +1164,7 @@ extension UIButton {
 }
 
 extension UIToolbar {
-    
     func ToolbarPicker(mySelect : Selector) -> UIToolbar {
-        
         let toolBar = UIToolbar()
         
         toolBar.barStyle = UIBarStyle.default
@@ -1356,7 +1180,6 @@ extension UIToolbar {
         
         return toolBar
     }
-    
 }
 
 //extension UIImage {

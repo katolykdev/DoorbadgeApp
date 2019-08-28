@@ -42,7 +42,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
     @IBOutlet weak var closedEventsLabel: UILabel!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         if defaults.string(forKey: "logInType") == "family" {
@@ -53,16 +52,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
         
         print(logInType)
         
-        let user = Auth.auth().currentUser
-        
-        if let user = user {
-            
-            let uid = user.uid
-            
-            print(uid)
-            
-        }
-        
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -70,12 +59,10 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
         closedEventsLabel.text = "CLOSED EVENTS"
         closedEventsLabel.addCharacterSpacing(kernValue: 1.15)
         
-        
         closedEventsTableView.register(UINib(nibName: "EventCellTableViewCell", bundle: nil), forCellReuseIdentifier: "eventCell")
         
         self.closedEventsTableView.dataSource = self;
         self.closedEventsTableView.delegate = self;
-        
         
         //        navigationItem.rightBarButtonItem = UIBarButtonItem.menuButton(self, action: #selector(addEventButtonDidTap(_:)), imageName: "addIcon")
         
@@ -87,7 +74,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
     }
     
     func changeDateStringToYearFirstNumber(date: String) -> Int {
-        
         if date == "" {
             return 99999999
         } else {
@@ -217,7 +203,6 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                         return $0.eventCode < $1.eventCode
                     }
                 })
-                
             }
             if closedEventsTableView.isAtTop {
                 self.closedEventsTableView.reloadSections([0], with: UITableView.RowAnimation.right)
@@ -254,14 +239,10 @@ class DoorBadgeClosedEventsViewController: UIViewController, UITableViewDataSour
                         return $0.eventCode < $1.eventCode
                     }
                 })
-                
-                
             }
             
             if closedEventsTableView.isAtTop {
-                
                 self.closedEventsTableView.reloadSections([0], with: UITableView.RowAnimation.right)
-                
             } else {
                 self.closedEventsTableView.setContentOffset(.zero, animated: true)
                 delayWithSeconds(0.3, completion: {

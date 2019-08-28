@@ -54,7 +54,6 @@ class WebViewController: UIViewController {
                         let newUrlString = "https://" + urlString
                         print(newUrlString)
                         if let url:URL = URL(string: newUrlString) {
-                          
                             webView.load(URLRequest(url: url))
                             print("default\(urlString)")
                         }
