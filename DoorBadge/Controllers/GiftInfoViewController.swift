@@ -16,8 +16,6 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     
     var indexPathRowNumber: Int = 0
     
-    let defaults = UserDefaults.standard
-    
     let scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.isPagingEnabled = true
@@ -44,9 +42,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     var giftThankYouSent: Bool = false
     
     var imagesArray: [String] = []
-    
-    var logInType = ""
-    
+        
     var thankYouWasSent: Bool = false
     
     @IBOutlet weak var thankYouWasSentView: UIView!
@@ -81,7 +77,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             
             EventGifts.gifts[indexPathRowNumber].thankYouSent = false
             
-            defaults.set("true", forKey: "thanksFirst")
+            UserDefaults.thanksFirst = true
         } else {
             thankYouWasSent = true
            
@@ -96,7 +92,7 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             
             EventGifts.gifts[indexPathRowNumber].thankYouSent = true
       
-            defaults.set("false", forKey: "thanksFirst")
+            UserDefaults.thanksFirst = false
         }
     }
     
@@ -214,9 +210,8 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
     override func viewDidLoad() {
         super.viewDidLoad()
         ModalTransitionMediator.instance.setListener(listener: self)
-        if defaults.string(forKey: "logInType") == "family" {
-            
-        } else {
+        switch UserDefaults.logInType {
+        case .facility:
             sentUnsentButton.isHidden = true
             thankYouWasSentView.isHidden = true
             thanks1.isHidden = true
@@ -226,6 +221,8 @@ class GiftInfoViewController: UIViewController, ModalTransitionListener {
             let button1 = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(editGifttModal))
             button1.title = "Edit Gift"
             self.navigationItem.rightBarButtonItem  = button1
+            
+        default: break
         }
             let giftRef = Firestore.firestore().collection("events").document(eventId).collection("gifts").document(giftId)
             

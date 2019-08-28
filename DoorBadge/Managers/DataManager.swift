@@ -10,41 +10,70 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
+// TODO: (skatolyk) Need to extract one method form getFacility and getFamily
 struct DataManager {
-    static func getFacility(completion: @escaping () -> Void) {
-        guard let user = Auth.auth().currentUser else {
-            return
+    static func getData(completion: @escaping () -> Void) {
+        switch UserDefaults.logInType {
+        case .facility: DataManager.getFacility(completion: completion)
+        case .family: DataManager.getFamily(completion: completion)
+        }
+    }
+    
+    static private func getFacility(completion: @escaping () -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return completion()
         }
         
-        let facilityRef = Firestore.firestore().collection("facilities").document("\(user.uid)")
+        let facilityRef = Firestore.firestore().collection("facilities").document("\(uid)")
         
         facilityRef.getDocument { (document, error) in
-            guard let facility = document.flatMap({
-                $0.data().flatMap({ Facility(dictionary: $0) })
-            }) else {
-                return
+            guard let facility = document?.data().flatMap({ Facility(dictionary: $0) }) else {
+                return completion()
             }
             
             FacilityEvents.loggedInFacility = facility
-            if let currentFacility = FacilityEvents.loggedInFacility {
-                let events = currentFacility.events
+            
+            for eventId in facility.events {
+                let eventRef = Firestore.firestore().collection("events").document(eventId)
                 
-                for event in events {
-                    let eventRef = Firestore.firestore().collection("events").document(event)
-                    
-                    eventRef.getDocument { (document, error) in
-                        guard let event = document.flatMap({
-                            $0.data().flatMap({ Event(dictionary: $0) })
-                        }) else {
-                            return
-                        }
-                        
-                        guard event.isOpen else { return }
-                        FacilityEvents.currentEvents.append(event)
+                eventRef.getDocument { (document, error) in
+                    guard let event = document?.data().flatMap({ Event(dictionary: $0) }) else {
+                        return
                     }
+                    
+                    event.isOpen ? FacilityEvents.currentEvents.append(event) : FacilityEvents.pastEvents.append(event)
                     completion()
                 }
             }
+        }
+    }
+    
+    static private func getFamily(completion: @escaping () -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return completion()
+        }
+        
+        let familyRef = Firestore.firestore().collection("users").document("\(uid)")
+        
+        familyRef.getDocument { (document, error) in
+            guard let family = document?.data().flatMap({ Family(dictionary: $0) }) else {
+                return completion()
+            }
+            
+            FamilyEvents.loggedInFamily = family
+            
+            for eventId in family.events {
+                let eventRef = Firestore.firestore().collection("events").document(eventId)
+                
+                eventRef.getDocument { (document, error) in
+                    guard let event = document?.data().flatMap({ Event(dictionary: $0) }) else {
+                        return
+                    }
+                    event.isOpen ? FamilyEvents.currentEvents.append(event) : FamilyEvents.pastEvents.append(event)
+                    completion()
+                }
+            }
+            
         }
     }
 }

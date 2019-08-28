@@ -14,7 +14,6 @@ import AVFoundation
 class MemoryBookViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var event: Event!
-    let defaults = UserDefaults.standard
     var comments: [Memory] = []
     var buttonRow = 0
     @IBOutlet weak var memoryBookTableView: UITableView!
@@ -309,7 +308,6 @@ class MemoryBookViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     @objc func popMemoryModal(sender: UIButton!)  {
-        defaults.set("popped", forKey: "didPopModal")
         performSegue(withIdentifier: "showAddMemoryView", sender:
             self)
         if MemoryBookEvent.comments.count > 0 {

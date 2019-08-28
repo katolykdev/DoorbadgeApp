@@ -10,6 +10,9 @@
 		7AC45C472310794F0055EE8B /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C462310794F0055EE8B /* Dictionary.swift */; };
 		7AC45C4A2312FCC00055EE8B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C492312FCC00055EE8B /* DataManager.swift */; };
 		7AC45C4C2312FFDB0055EE8B /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C4B2312FFDB0055EE8B /* SpinnerViewController.swift */; };
+		7AC45C4E23157BA60055EE8B /* UpdatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C4D23157BA60055EE8B /* UpdatableViewController.swift */; };
+		7AC45C502316C49E0055EE8B /* LogInType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C4F2316C49E0055EE8B /* LogInType.swift */; };
+		7AC45C522316C4F90055EE8B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC45C512316C4F90055EE8B /* UserDefaults.swift */; };
 		C5450E56CEB870421CA882A2 /* Pods_DoorBadge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675CF636B73F8CAC96337E34 /* Pods_DoorBadge.framework */; };
 		F3117ABA22F0F8AE00E933F1 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */; };
 		F3117ABC22F1146900E933F1 /* LatestVideoURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3117ABB22F1146900E933F1 /* LatestVideoURL.swift */; };
@@ -71,6 +74,9 @@
 		7AC45C462310794F0055EE8B /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		7AC45C492312FCC00055EE8B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7AC45C4B2312FFDB0055EE8B /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		7AC45C4D23157BA60055EE8B /* UpdatableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatableViewController.swift; sourceTree = "<group>"; };
+		7AC45C4F2316C49E0055EE8B /* LogInType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInType.swift; sourceTree = "<group>"; };
+		7AC45C512316C4F90055EE8B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		BC75CF02D4859742BB984DDE /* Pods-DoorBadge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorBadge.release.xcconfig"; path = "Target Support Files/Pods-DoorBadge/Pods-DoorBadge.release.xcconfig"; sourceTree = "<group>"; };
 		DDEEB1FC10907B2450D2B82B /* Pods-DoorBadge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoorBadge.debug.xcconfig"; path = "Target Support Files/Pods-DoorBadge/Pods-DoorBadge.debug.xcconfig"; sourceTree = "<group>"; };
 		F3117AB922F0F8AD00E933F1 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				7AC45C462310794F0055EE8B /* Dictionary.swift */,
+				7AC45C512316C4F90055EE8B /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 				F3F34C06229C4E4500044978 /* EventGifts.swift */,
 				F3DDB85D228A7969007CEC8A /* Facility.swift */,
 				F3A6953722B1FCF300904812 /* Family.swift */,
+				7AC45C4F2316C49E0055EE8B /* LogInType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,12 +263,13 @@
 			isa = PBXGroup;
 			children = (
 				7AC45C4B2312FFDB0055EE8B /* SpinnerViewController.swift */,
+				7AC45C4D23157BA60055EE8B /* UpdatableViewController.swift */,
+				F33D243F228B298C00BC973D /* TabBarController.swift */,
 				F35A11D222DC2C1B00D664C4 /* AddMemoryViewController.swift */,
 				F3FE261622AEE41600D5FE8B /* CenterScaleToFitImageView.swift */,
 				F3F34C0B229CE0C500044978 /* EventInfoViewController.swift */,
 				F3F34C0D229EDCF600044978 /* GiftInfoViewController.swift */,
 				F32FF9F622D2E4F700FBF1D4 /* MemoryBookLoginViewController.swift */,
-				F33D243F228B298C00BC973D /* TabBarController.swift */,
 				F3707B5C227159B1000A010B /* DoorBadgePreLoginViewController.swift */,
 				F3707B5A227155D2000A010B /* DoorBadgeLogInViewController.swift */,
 				F39FCC4A22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift */,
@@ -423,6 +432,7 @@
 				F3F34C052297360000044978 /* Gift.swift in Sources */,
 				F31F88742278F2F600D28F14 /* AddEventEventDetailsCell.swift in Sources */,
 				F3707B5B227155D2000A010B /* DoorBadgeLogInViewController.swift in Sources */,
+				7AC45C4E23157BA60055EE8B /* UpdatableViewController.swift in Sources */,
 				F3F34C0C229CE0C500044978 /* EventInfoViewController.swift in Sources */,
 				F385F69C22E977A300FAA1B7 /* FullImageViewController.swift in Sources */,
 				F39FCC4B22752CEB007CD427 /* DoorBadgeOpenEventsViewController.swift in Sources */,
@@ -455,8 +465,10 @@
 				F368DCC622DFBFF800C08BF7 /* MemoryBookEvent.swift in Sources */,
 				F3C92464229F7C41002492F4 /* LoggedIn.swift in Sources */,
 				F327FFA622EFFE7F0005233C /* VideoRecorderViewController.swift in Sources */,
+				7AC45C502316C49E0055EE8B /* LogInType.swift in Sources */,
 				F39FCC51227548C6007CD427 /* Event.swift in Sources */,
 				F368DCC822E02CE900C08BF7 /* Memory.swift in Sources */,
+				7AC45C522316C4F90055EE8B /* UserDefaults.swift in Sources */,
 				F3A6953822B1FCF300904812 /* Family.swift in Sources */,
 				7AC45C472310794F0055EE8B /* Dictionary.swift in Sources */,
 				F3117ABA22F0F8AE00E933F1 /* UIButtonExtension.swift in Sources */,

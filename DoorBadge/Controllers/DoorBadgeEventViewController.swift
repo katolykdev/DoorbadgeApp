@@ -15,8 +15,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentFacility: Facility!
     
-    let defaults = UserDefaults.standard
-    
     var indexToPass = 0
     var firstAndLastName = ""
     var dateToDate = ""
@@ -29,7 +27,7 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     
     var gifts: [[String: Any]] = []
     
-    var logInType = ""
+    var logInType = UserDefaults.logInType
     
     var thanksFirst = true
     
@@ -50,16 +48,8 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Determine if family or facility
-        //
         
-        if defaults.string(forKey: "logInType") == "family" {
-            logInType = "family"
-        } else {
-            logInType = "facility"
-        }
-        
-        defaults.set("false", forKey: "thanksFirst")
+        UserDefaults.thanksFirst = false
         
         firstAndLastNameLabel.text = firstAndLastName
         
@@ -75,11 +65,13 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
 //        button1.title = "Add Gift"
 //        self.navigationItem.rightBarButtonItem  = button1
         
-        if logInType == "family" {
+        switch logInType {
+        case .family:
             let button1 = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(thanksSort)) // action:#selector(Class.MethodName) for swift 3
             button1.title = "Show Thanked First"
             self.navigationItem.rightBarButtonItem  = button1
-        } else {
+            
+        case .facility:
             let button1 = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(segueToAddGift)) // action:#selector(Class.MethodName) for swift 3
             button1.title = "Add Gift"
             self.navigationItem.rightBarButtonItem  = button1
@@ -93,7 +85,8 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func defaultSort() {
-        if logInType == "family" {
+        switch logInType {
+        case .family:
             if thanksFirst == false {
                 EventGifts.gifts.sort {
                         $0.thankYouSent && !$1.thankYouSent
@@ -117,7 +110,7 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
                     giftsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
                 }
                 
-                defaults.set("true", forKey: "thanksFirst")
+                UserDefaults.thanksFirst = true
             } else {
                 EventGifts.gifts.sort {
                     $1.thankYouSent && !$0.thankYouSent
@@ -141,10 +134,10 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
                     giftsTableView.scrollToRow(at: indexPath, at: .top, animated: false)
                 }
                 
-                defaults.set("false", forKey: "thanksFirst")
+                UserDefaults.thanksFirst = false
             }
-        } else {
-            
+        
+        default: break
         }
         self.giftsTableView.reloadData()
     }
@@ -174,8 +167,9 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getGifts()
-            if logInType == "family" {
-                if defaults.string(forKey: "thanksFirst") == "true" {
+            switch logInType {
+            case .family:
+                if UserDefaults.thanksFirst {
                     EventGifts.gifts.sort {
                         $0.thankYouSent && !$1.thankYouSent
                     }
@@ -184,25 +178,19 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
                         $1.thankYouSent && !$0.thankYouSent
                     }
                 }
+                
+            default: break
             }
 
             giftsTableView.reloadData()
-
-            if defaults.object(forKey: "lastSelectedRow") != nil {
-                if defaults.integer(forKey: "lastSelectedRow") > 0 {
-
-                    let row = defaults.integer(forKey: "lastSelectedRow")
-
-                    if EventGifts.gifts.count > row {
-                        let indexPath = IndexPath(item: 0, section: row)
-                        giftsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
-
-                        defaults.set(0, forKey: "lastSelectedRow")
-                    }
-                } else {
-
-                }
-            }
+        
+        let row = UserDefaults.lastEventSelectedRow
+        if row > 0, EventGifts.gifts.count > row {
+            let indexPath = IndexPath(item: 0, section: row)
+            giftsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            
+            UserDefaults.lastEventSelectedRow = 0
+        }
     }
 
     @objc func segueToAddGift(sender: UIButton!) {
@@ -231,7 +219,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
                 eventInfoVC.eventId = eventId
                 eventInfoVC.eventDateLabelText = "\(event.date)"
                 eventInfoVC.event = event
-                eventInfoVC.logInType = logInType
                 eventInfoVC.eventIsOpen = eventIsOpen
                 
                 if event.location == "" {
@@ -279,10 +266,9 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if logInType == "facility" {
-        return 128
-        } else {
-            return 104 + (UIScreen.main.bounds.width)
+        switch logInType {
+        case .family: return 104 + UIScreen.main.bounds.width
+        case .facility: return 128
         }
     }
     
@@ -291,15 +277,15 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if logInType == "facility" {
-            return 8
-        } else {
-            return 0
+        switch logInType {
+        case .facility: return 8
+        case .family: return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if logInType == "facility" {
+        switch logInType {
+        case .facility:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "giftCell", for: indexPath) as? GiftCellTableViewCell else {
                 fatalError("Not a Teaser Cell")
             }
@@ -315,11 +301,10 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
             
                 if gift.mainImage != "" {
                     cell.giftImageView.sd_setImage(with: URL(string: gift.mainImage))
-                } else {
-                    
                 }
             return cell
-        } else {
+        
+        case .family:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "giftFamilyCell", for: indexPath) as? GiftAsFamilyTableViewCell else {
                 fatalError("Not a Teaser Cell")
             }
@@ -347,8 +332,6 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     
                 if gift.mainImage != "" {
                     cell.giftImageView.sd_setImage(with: URL(string: gift.mainImage))
-                } else {
-                    
                 }
             
             return cell
@@ -356,14 +339,10 @@ class DoorBadgeEventViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if logInType == "family" {
-            giftToPass = EventGifts.gifts[indexPath.section]
-        } else {
-            giftToPass = EventGifts.gifts[indexPath.section]
-        }
+        giftToPass = EventGifts.gifts[indexPath.section]
         
         indexToPass = indexPath.section
         performSegue(withIdentifier: "showGiftInfo", sender: self)
-        defaults.set(indexToPass, forKey: "lastSelectedRow")
+        UserDefaults.lastEventSelectedRow = indexToPass
     }
 }

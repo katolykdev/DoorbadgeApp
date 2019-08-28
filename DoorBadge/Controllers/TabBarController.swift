@@ -18,7 +18,9 @@ class TabBarController: UITabBarController, SpinnerViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         showHUD()
-        DataManager.getFacility {
+        
+        DataManager.getData {
+            ((self.selectedViewController as? UINavigationController)?.viewControllers.first as? UpdatableViewController)?.update()
             self.hideHUD()
         }
     }

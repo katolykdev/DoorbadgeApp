@@ -150,8 +150,7 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                         self.dbLogInButton.hideLoading()
                         
                         if self.logInPageTitleText == "Family" {
-                            
-                            UserDefaults.standard.set("family", forKey: "logInType")
+                            UserDefaults.logInType = .family
                             
                             if let uid = Auth.auth().currentUser?.uid {
                                 
@@ -180,7 +179,7 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                                 }
                             }
                         } else {
-                            UserDefaults.standard.set("facility", forKey: "logInType")
+                            UserDefaults.logInType = .facility
                             
                             if let uid = Auth.auth().currentUser?.uid {
                                 let facilityDocRef = self.facilityRef.document(uid)
@@ -210,20 +209,6 @@ class DoorBadgeLogInViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 })
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loggedInToOpenEvents" {
-            if let openEventsVC = segue.destination as? DoorBadgeOpenEventsViewController {
-                
-                openEventsVC.logInType = logInPageTitleText
- 
-//                let nextPageBack = "Open Events"
-//                let backItem = UIBarButtonItem()
-//                backItem.title = nextPageBack
-//                navigationItem.backBarButtonItem = backItem
             }
         }
     }

@@ -49,7 +49,7 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
     
     var eventIsOpen = true
     
-    var logInType = ""
+    private let logInType = UserDefaults.logInType
     
     @IBOutlet weak var deceasedNameLabel: UILabel!
     
@@ -142,7 +142,8 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
             let docRef = db.collection("events").document(eventId)
             docRef.updateData(["isOpen" : false])
          
-            if logInType == "family" {
+            switch logInType {
+            case .family:
 //                 EventGifts.gifts[indexPathRowNumber].updateValue(false, forKey: "thankYouSent")
 //
                 if let index = FamilyEvents.currentEvents.index(where: {$0.eventId == eventId}) {
@@ -150,7 +151,8 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
                     
                     FamilyEvents.currentEvents.remove(at: index)
                 }
-            } else {
+            
+            case .facility:
                 if let index = FacilityEvents.currentEvents.index(where: {$0.eventId == eventId}) {
                     FacilityEvents.pastEvents.append(FacilityEvents.currentEvents[index])
                     
@@ -171,7 +173,8 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
             let docRef = db.collection("events").document(eventId)
             docRef.updateData(["isOpen" : true])
             
-            if logInType == "family" {
+            switch logInType {
+            case .family:
                 //                 EventGifts.gifts[indexPathRowNumber].updateValue(false, forKey: "thankYouSent")
                 //
                 if let index = FamilyEvents.pastEvents.index(where: {$0.eventId == eventId}) {
@@ -179,7 +182,8 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
                     
                     FamilyEvents.pastEvents.remove(at: index)
                 }
-            } else {
+                
+            case .facility:
                 if let index = FacilityEvents.pastEvents.index(where: {$0.eventId == eventId}) {
                     FacilityEvents.currentEvents.append(FacilityEvents.pastEvents[index])
                     
@@ -206,9 +210,9 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
 //            eventImageView!.sd_setImage(with: URL(string: event.image))
 //        }
         
-        if logInType == "facility" {
+        switch logInType {
+        case .facility:
             if let index = FacilityEvents.currentEvents.index(where: {$0.eventId == eventId}) {
-            
                 let thisEvent = FacilityEvents.currentEvents[index]
                 
                 deceasedNameLabel.text = "\(thisEvent.eventFirstName) \(thisEvent.eventLastName)"
@@ -230,6 +234,8 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
                 
                 print(FacilityEvents.currentEvents[index])
             }
+            
+        default: break
         }
     }
     
@@ -237,10 +243,13 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
         super.viewDidLoad()
         print(event)
         submittedGift = false
-        if logInType == "facility" {
-        let button1 = UIBarButtonItem(image: nil, style: .plain, target: self, action: #selector(editEventModal))
-        button1.title = "Edit Event"
-        self.navigationItem.rightBarButtonItem  = button1
+        switch logInType {
+        case .facility:
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit Event",
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(editEventModal))
+        default: break
         }
         
         deceasedNameLabel.text = deceasedNameLabelText
@@ -255,15 +264,12 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
 //
 //        }
         
-        if logInType == "family" {
-            markAsClosedButton.isHidden = true
-        } else {
-            
+        switch logInType {
+        case .family: markAsClosedButton.isHidden = true
+        default: break
         }
-
-        let screenSize = view.bounds.width
         
-        eventImageViewHeight.constant = screenSize
+        eventImageViewHeight.constant = view.bounds.width
 //        eventImageView.contentMode = .scaleToFill
         
         eventTitleLabel.text = eventTitleLabelText
@@ -304,9 +310,9 @@ class EventInfoViewController: UIViewController, MFMailComposeViewControllerDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if submittedGift == true {
-            self.navigationController?.popViewController(animated: true)
-        }
+        super.viewWillAppear(animated)
+        guard submittedGift else { return }
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func editEventModal(sender: UIButton!) {

@@ -17,9 +17,7 @@ class DoorBadgeSettingsViewController: UIViewController  {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentFacility: Facility!
     
-    let defaults = UserDefaults.standard
-    
-    var logInType = ""
+    var logInType = UserDefaults.logInType
     
     @IBOutlet var facilityNameLabel: UILabel!
     
@@ -62,13 +60,9 @@ class DoorBadgeSettingsViewController: UIViewController  {
     }
 
     override func viewDidLoad() {
-        if defaults.string(forKey: "logInType") == "family" {
-            logInType = "family"
-        } else {
-            logInType = "facility"
-        }
-        
-        if logInType == "facility" {
+        super.viewDidLoad()
+        switch logInType {
+        case .facility:
             currentFacility = FacilityEvents.loggedInFacility
             
             facilityName.text = currentFacility.name
@@ -78,7 +72,8 @@ class DoorBadgeSettingsViewController: UIViewController  {
             facilityFirstName.text = currentFacility.firstName
             facilityLastName.text = currentFacility.lastName
             facilityWebsite.text = currentFacility.website
-        } else {
+        
+        case .family:
             facilityNameLabel.text = "Logged in as:"
             facilityName.text = Auth.auth().currentUser?.email
             

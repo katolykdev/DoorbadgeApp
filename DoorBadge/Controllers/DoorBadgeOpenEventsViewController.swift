@@ -23,9 +23,7 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
         openEventsTableView.reloadData()
     }
 
-    var logInType = ""
-    
-    let defaults = UserDefaults.standard
+    var logInType = UserDefaults.logInType
     
     var currentUserId = ""
     
@@ -46,12 +44,6 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if defaults.string(forKey: "logInType") == "family" {
-            logInType = "family"
-        } else {
-            logInType = "facility"
-        }
-        
         navigationController?.navigationBar.isTranslucent = false
         tabBarController?.tabBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -66,10 +58,9 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
        
 //        navigationItem.rightBarButtonItem = UIBarButtonItem.menuButton(self, action: #selector(addEventButtonDidTap(_:)), imageName: "addIcon")
         
-        if logInType == "family" {
+        if logInType == .family {
             rightAddButton.isEnabled = false
             rightAddButton.tintColor = .clear
-            getFamily()
         }
     }
     
@@ -91,9 +82,8 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
     }
     
     func defaultSort() {
-        
-        if logInType == "family" {
-            
+        switch logInType {
+        case .family:
             FamilyEvents.currentEvents.sort(by: {
                 if $0.date != $1.date {
                     return changeDateStringToYearFirstNumber(date: $0.date) < changeDateStringToYearFirstNumber(date: $1.date)
@@ -101,8 +91,8 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
                     return $0.eventLastName < $1.eventLastName
                 }
             })
-        } else {
-            
+        
+        case .facility:
             FacilityEvents.currentEvents.sort(by: {
                 if $0.date != $1.date {
                     return changeDateStringToYearFirstNumber(date: $0.date) < changeDateStringToYearFirstNumber(date: $1.date)
@@ -110,63 +100,6 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
                     return $0.eventLastName < $1.eventLastName
                 }
             })
-        }
-    }
-    
-    func getFamily(){
-        let user = Auth.auth().currentUser
-        
-        if let user = user {
-            
-            let uid = user.uid
-         
-            let familyRef = db.collection("users").document("\(uid)")
-            
-            familyRef.getDocument { (document, error) in
-                
-                if let family = document.flatMap({
-                    
-                    $0.data().flatMap({ (data) in
-                        
-                        return Family(dictionary: data)
-                        
-                    })
-                    
-                }) {
-                    
-                    FamilyEvents.loggedInFamily = family
-                    
-                    if let currentFamily = FamilyEvents.loggedInFamily {
-                        
-                        let events = currentFamily.events
-                        
-                        for event in events {
-                            
-                            let eventRef = Firestore.firestore().collection("events").document(event)
-                            
-                            eventRef.getDocument { (document, error) in
-                                if let event = document.flatMap({
-                                    $0.data().flatMap({ (data) in
-                                        return Event(dictionary: data)
-                                    })
-                                }) {
-                                    if event.isOpen {
-                                        FamilyEvents.currentEvents.append(event)
-                                        self.openEventsTableView.reloadData()
-                                        self.defaultSort()
-                                    } else {
-                                        
-                                    }
-                                } else {
-                                   
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    
-                }
-            }
         }
     }
     
@@ -186,8 +119,8 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             leftSortButton.title = "Sort by Date"
             sortedBy = "name"
             
-            if logInType == "family" {
-                
+            switch logInType {
+            case .family:
                 FamilyEvents.currentEvents.sort(by: {
                     if $0.eventLastName != $1.eventLastName {
                         return $0.eventLastName < $1.eventLastName
@@ -198,7 +131,7 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
                     }
                 })
                 
-            } else {
+            case .facility:
                 FacilityEvents.currentEvents.sort(by: {
                     if $0.eventLastName != $1.eventLastName {
                         return $0.eventLastName < $1.eventLastName
@@ -222,8 +155,8 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             leftSortButton.title = "Sort by Name"
             sortedBy = "date"
             
-            if logInType == "family" {
-            
+            switch logInType {
+            case .family:
                 FamilyEvents.currentEvents.sort(by: {
                     if $0.date != $1.date {
                         return changeDateStringToYearFirstNumber(date: $0.date) < changeDateStringToYearFirstNumber(date: $1.date)
@@ -234,8 +167,7 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
                     }
                 })
                 
-            } else {
-                
+            case .facility:
                 FacilityEvents.currentEvents.sort(by: {
                     if $0.date != $1.date {
                         return changeDateStringToYearFirstNumber(date: $0.date) < changeDateStringToYearFirstNumber(date: $1.date)
@@ -248,9 +180,7 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             }
 
             if openEventsTableView.isAtTop {
-                
                 self.openEventsTableView.reloadSections([0], with: UITableView.RowAnimation.right)
-                
             } else {
                 self.openEventsTableView.setContentOffset(.zero, animated: true)
                 delayWithSeconds(0.3, completion: {
@@ -269,14 +199,11 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-  
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if logInType == "family" {
+        switch logInType {
+        case .family:
             return FamilyEvents.currentEvents.count
-        } else {
+        case .facility:
             return FacilityEvents.currentEvents.count
         }
     }
@@ -291,10 +218,9 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             fatalError("Not a Teaser Cell")
         }
         
-        if logInType == "family" {
-            event = FamilyEvents.currentEvents[indexPath.row]
-        } else {
-            event = FacilityEvents.currentEvents[indexPath.row]
+        switch logInType {
+        case .family: event = FamilyEvents.currentEvents[indexPath.row]
+        case .facility: event = FacilityEvents.currentEvents[indexPath.row]
         }
 
         cell.populate(event: event)
@@ -313,10 +239,9 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if logInType == "family" {
-             event = FamilyEvents.currentEvents[indexPath.row]
-        } else {
-             event = FacilityEvents.currentEvents[indexPath.row]
+        switch logInType {
+        case .family: event = FamilyEvents.currentEvents[indexPath.row]
+        case .facility: event = FacilityEvents.currentEvents[indexPath.row]
         }
         
         performSegue(withIdentifier: "showEventFromOpenEvents", sender: self)
@@ -344,7 +269,13 @@ class DoorBadgeOpenEventsViewController: UIViewController, UITableViewDataSource
             }
         }
     }
-  
+}
+
+// MARK: - UpdatableViewController
+extension DoorBadgeOpenEventsViewController: UpdatableViewController {
+    func update() {
+        openEventsTableView.reloadData()
+    }
 }
 
 extension UIBarButtonItem {
